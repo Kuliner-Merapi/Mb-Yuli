@@ -2,759 +2,407 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=390px, initial-scale=1.0, maximum-scale=1.0">
 <title>Rumah Kuliner Mbak Yulli Merapi</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Cinzel+Decorative:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ===== RESET ===== */
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box}
 
-/* ===== WOOD TEXTURES via CSS ===== */
-:root{
-  --wood-dark:#3b1f0a;
-  --wood-mid:#6b3a1f;
-  --wood-light:#8b5a2b;
-  --parchment:#f5e6c8;
-  --parchment-dark:#e8d5a3;
-  --ink-dark:#2c1a0e;
-  --fire-1:#ff6a00;
-  --fire-2:#ee0979;
-  --fire-3:#ffb347;
-  --gold:#c9952a;
-  --gold-light:#f0c96b;
+html, body {
+  height: 100%;
+  overflow: hidden;
 }
 
-body{
-  font-family:'Lato',Arial,sans-serif;
-  background:var(--wood-dark);
-  color:var(--ink-dark);
-  line-height:1.6;
-  /* Left-right wood border via body background */
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      transparent,transparent 2px,
-      rgba(255,255,255,0.015) 2px,rgba(255,255,255,0.015) 4px
-    ),
-    repeating-linear-gradient(
-      180deg,
-      transparent,transparent 6px,
-      rgba(0,0,0,0.08) 6px,rgba(0,0,0,0.08) 12px
-    ),
-    linear-gradient(135deg,#3b1f0a 0%,#5c2e10 30%,#3b1f0a 60%,#4a2510 100%);
+body {
+  font-family: Poppins, sans-serif;
+  background: url('https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/bg.webp') center top / cover fixed;
+  color: #3c2415;
+  display: flex;
+  flex-direction: column;
+  max-width: 430px;
+  margin: 0 auto;
+  position: relative;
 }
 
-/* ===== WRAPPER — creates the "frame" effect ===== */
-.page-wrapper{
-  max-width:960px;
-  margin:0 auto;
-  background:transparent;
+/* ===== HEADER FIXED ===== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  z-index: 1000;
+}
+.site-header img {
+  width: 100%;
+  display: block;
 }
 
-/* ===== MARQUEE ===== */
-.marquee-wrap{
-  background:linear-gradient(90deg,#7a3c00,#c26b1a,#7a3c00);
-  border-bottom:3px solid var(--gold);
-  border-top:3px solid var(--gold);
-  padding:9px 0;
-  overflow:hidden;
-  white-space:nowrap;
+/* ===== FOOTER FIXED ===== */
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  z-index: 1000;
 }
-.marquee-inner{
-  display:inline-block;
-  animation:marqueeScroll 22s linear infinite;
-  font-family:'Lato',sans-serif;
-  font-weight:700;
-  font-size:0.95rem;
-  color:var(--gold-light);
-  letter-spacing:0.05em;
-  padding-left:100%;
-}
-@keyframes marqueeScroll{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-50%);}
+.site-footer img {
+  width: 100%;
+  display: block;
 }
 
-/* ===== HEADER — kayu gelap dengan ukiran ===== */
-header{
-  position:relative;
-  text-align:center;
-  padding:35px 20px 40px;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,transparent 3px,
-      rgba(0,0,0,0.12) 3px,rgba(0,0,0,0.12) 6px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,transparent 8px,
-      rgba(255,255,255,0.02) 8px,rgba(255,255,255,0.02) 10px
-    ),
-    linear-gradient(180deg,#2a1206 0%,#4a2010 40%,#3b1a08 70%,#251005 100%);
-  border-bottom:5px double var(--gold);
-  overflow:hidden;
+/* ===== KONTEN SCROLL DI TENGAH ===== */
+.scroll-area {
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* tinggi header & footer diestimasi, akan di-set via JS */
+  flex: 1;
 }
 
-/* Wood grain overlay */
-header::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:repeating-linear-gradient(
-    88deg,
-    transparent,transparent 20px,
-    rgba(255,200,100,0.03) 20px,rgba(255,200,100,0.03) 21px
-  );
-  pointer-events:none;
+.container {
+  padding: 10px 12px;
 }
 
-/* Decorative corner ornaments */
-header::after{
-  content:'❧ ✦ ❧';
-  display:block;
-  color:var(--gold);
-  font-size:1.2rem;
-  letter-spacing:8px;
-  margin-top:14px;
-  opacity:0.8;
+/* ===== GLASS CARD ===== */
+.glass {
+  background: rgba(255, 250, 240, 0.93);
+  backdrop-filter: blur(4px);
+  border-radius: 20px;
+  padding: 18px;
+  margin: 12px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
 }
 
-header img{
-  width:120px;
-  height:120px;
-  object-fit:cover;
-  border-radius:50%;
-  border:4px solid var(--gold);
-  box-shadow:0 0 0 6px rgba(201,149,42,0.3), 0 4px 20px rgba(0,0,0,0.6);
-  background:white;
-  position:relative;
-  z-index:1;
+/* ===== HERO HOOK ===== */
+.hero-hook {
+  text-align: center;
+  padding: 18px 14px;
+}
+.hero-hook h1 {
+  font-size: 1.5rem;
+  color: #9b2d00;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.hero-hook p {
+  font-size: .95rem;
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+.cta {
+  display: inline-block;
+  margin-top: 14px;
+  background: #25D366;
+  color: white;
+  padding: 14px 26px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: .95rem;
 }
 
-/* ===== FLAMING TITLE ===== */
-.flaming-title{
-  margin-top:18px;
-  font-family:'Cinzel Decorative','Playfair Display',serif;
-  font-size:2.1rem;
-  font-weight:700;
-  line-height:1.2;
-  letter-spacing:0.04em;
-  position:relative;
-  display:inline-block;
-  /* Flame gradient text */
-  background:linear-gradient(
-    180deg,
-    #fff9e6 0%,
-    #ffe066 20%,
-    #ffb347 45%,
-    #ff6a00 70%,
-    #cc3300 100%
-  );
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  /* Glow */
-  filter:drop-shadow(0 0 8px rgba(255,140,0,0.7)) drop-shadow(0 0 20px rgba(255,80,0,0.4));
-  animation:flamePulse 3s ease-in-out infinite;
+/* ===== SECTION TITLE ===== */
+.section-title {
+  text-align: center;
+  font-size: 1.25rem;
+  margin-bottom: 14px;
+  color: #8d2f00;
+  font-weight: 700;
 }
 
-@keyframes flamePulse{
-  0%,100%{filter:drop-shadow(0 0 8px rgba(255,140,0,0.7)) drop-shadow(0 0 20px rgba(255,80,0,0.4));}
-  50%{filter:drop-shadow(0 0 14px rgba(255,180,0,0.9)) drop-shadow(0 0 30px rgba(255,100,0,0.6));}
+/* ===== FEATURE (BEST SELLER) ===== */
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: center;
+}
+.feature img {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: contain;
+  max-height: 160px;
+}
+.big-price {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #d32f2f;
+  margin-top: 8px;
+}
+.badge {
+  background: #ff9800;
+  color: #fff;
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 6px;
 }
 
-.tagline{
-  margin-top:10px;
-  font-family:'Playfair Display',serif;
-  font-size:1.1rem;
-  font-weight:700;
-  color:var(--gold-light);
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  text-shadow:0 1px 4px rgba(0,0,0,0.8);
+/* ===== GRID KARTU MENU ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+.card img {
+  width: 100%;
+  height: auto;
+  max-height: 160px;
+  object-fit: contain;
+  display: block;
+  background: #fdf6ee;
+  padding: 6px;
+}
+.card-body {
+  padding: 10px;
+  text-align: center;
+}
+.card-body h3 {
+  font-size: .85rem;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.price {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #d32f2f;
 }
 
-.desc{
-  margin-top:10px;
-  font-size:0.92rem;
-  color:#e8cfaa;
-  max-width:580px;
-  margin-left:auto;
-  margin-right:auto;
-  line-height:1.7;
+/* ===== CATERING SECTION ===== */
+.catering-box {
+  text-align: center;
+}
+.catering-box h2 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #7a1f00;
+  line-height: 1.4;
+}
+.catering-box p {
+  font-size: .9rem;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.catering-box h3 {
+  font-size: 1rem;
+  color: #3c2415;
 }
 
-.delivery-note{
-  margin-top:14px;
-  font-size:0.9rem;
-  background:rgba(201,149,42,0.2);
-  border:1px solid rgba(201,149,42,0.5);
-  display:inline-block;
-  padding:7px 20px;
-  border-radius:30px;
-  color:var(--gold-light);
-  font-weight:700;
-  letter-spacing:0.05em;
-}
-
-/* ===== HERO / CTA ===== */
-.hero{
-  text-align:center;
-  padding:22px 20px;
-  background:linear-gradient(180deg,#f5e6c8 0%,#eedcb0 100%);
-  border-bottom:3px solid var(--gold);
-  position:relative;
-}
-
-.hero::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:repeating-linear-gradient(
-    45deg,
-    transparent,transparent 30px,
-    rgba(139,90,43,0.04) 30px,rgba(139,90,43,0.04) 31px
-  );
-  pointer-events:none;
-}
-
-.btn{
-  display:inline-block;
-  padding:14px 30px;
-  text-decoration:none;
-  border-radius:8px;
-  font-weight:700;
-  font-size:1rem;
-  letter-spacing:0.06em;
-  position:relative;
-  z-index:1;
-}
-
-.btn-wa{
-  background:linear-gradient(135deg,#1a9e4a,#25D366,#1a9e4a);
-  color:white;
-  border:2px solid #1a9e4a;
-  box-shadow:0 3px 12px rgba(37,211,102,0.35);
-  transition:all 0.2s;
-  text-transform:uppercase;
-}
-.btn-wa:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 20px rgba(37,211,102,0.5);
-}
-
-.contact-box{
-  margin-top:14px;
-  background:rgba(139,90,43,0.1);
-  border:1px solid var(--gold);
-  padding:10px 22px;
-  border-radius:8px;
-  display:inline-block;
-  font-weight:700;
-  color:var(--wood-mid);
-  font-size:0.95rem;
-}
-
-/* ===== SECTION WRAPPER (parchment center) ===== */
-.section{
-  padding:35px 20px;
-  position:relative;
-}
-
-.section-parchment{
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,transparent 28px,
-      rgba(139,90,43,0.06) 28px,rgba(139,90,43,0.06) 29px
-    ),
-    linear-gradient(180deg,#f5e6c8 0%,#eedcb0 50%,#f5e6c8 100%);
-}
-
-.section-parchment-alt{
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,transparent 28px,
-      rgba(139,90,43,0.06) 28px,rgba(139,90,43,0.06) 29px
-    ),
-    linear-gradient(180deg,#eedcb0 0%,#e8d5a3 50%,#eedcb0 100%);
-}
-
-/* ===== DRAMATIC SECTION TITLE ===== */
-.section-title{
-  text-align:center;
-  margin-bottom:25px;
-  position:relative;
-}
-
-.section-title span{
-  font-family:'Playfair Display',serif;
-  font-size:1.55rem;
-  font-weight:900;
-  background:linear-gradient(135deg,#7a3200 0%,#c26b1a 40%,#ff9500 60%,#c26b1a 80%,#7a3200 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  filter:drop-shadow(0 1px 2px rgba(122,50,0,0.4));
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-}
-
-.section-title::before,
-.section-title::after{
-  content:'';
-  display:inline-block;
-  width:60px;
-  height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold));
-  vertical-align:middle;
-  margin:0 12px;
-}
-.section-title::after{
-  background:linear-gradient(90deg,var(--gold),transparent);
-}
-
-/* ===== PRODUCT CARDS ===== */
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:18px;
-  max-width:900px;
-  margin:0 auto;
-}
-
-.card{
-  background:linear-gradient(160deg,#fffbf2,#f5e6c8);
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 3px 12px rgba(59,31,10,0.25), inset 0 1px 0 rgba(255,255,255,0.6);
-  border:1px solid rgba(201,149,42,0.4);
-  transition:transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 8px 24px rgba(59,31,10,0.35);
-}
-
-.card img{
-  width:100%;
-  height:auto;
-  aspect-ratio:4/3;
-  object-fit:contain;
-  background:#f9f4e8;
-  display:block;
-}
-
-.card-body{
-  padding:12px 14px 16px;
-  text-align:center;
-  border-top:1px solid rgba(201,149,42,0.3);
-}
-
-.card h3{
-  font-family:'Playfair Display',serif;
-  font-size:1rem;
-  font-weight:700;
-  margin-bottom:6px;
-  color:var(--ink-dark);
-}
-
-.price{
-  font-family:'Lato',sans-serif;
-  color:var(--fire-1);
-  font-size:1.15rem;
-  font-weight:900;
-  letter-spacing:0.04em;
-  text-shadow:0 1px 3px rgba(255,106,0,0.25);
-}
-
-/* ===== COMING SOON ===== */
-.coming-soon-wrap{
-  max-width:860px;
-  margin:0 auto;
-  background:linear-gradient(160deg,#fffbf2,#f5e6c8);
-  padding:28px 32px;
-  border-radius:14px;
-  box-shadow:0 3px 14px rgba(59,31,10,0.2);
-  border:1px solid rgba(201,149,42,0.4);
-}
-
-.coming-soon-badge{
-  display:inline-block;
-  background:linear-gradient(135deg,#7a3200,#c26b1a);
-  color:var(--gold-light);
-  padding:5px 18px;
-  border-radius:30px;
-  font-size:0.82rem;
-  font-weight:700;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  margin-bottom:18px;
-  box-shadow:0 2px 8px rgba(122,50,0,0.3);
-}
-
-.coming-soon-wrap ul{
-  columns:2;
-  list-style:none;
-  padding:0;
-}
-
-.coming-soon-wrap li{
-  margin-bottom:10px;
-  padding-left:26px;
-  position:relative;
-  font-size:0.96rem;
-  color:var(--ink-dark);
-}
-
-.coming-soon-wrap li::before{
-  content:"🕐";
-  position:absolute;
-  left:0;
-  font-size:0.85rem;
-  top:2px;
-}
-
-/* ===== INFO / ALAMAT ===== */
-.info{
-  padding:35px 20px;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,transparent 28px,
-      rgba(139,90,43,0.05) 28px,rgba(139,90,43,0.05) 29px
-    ),
-    linear-gradient(180deg,#f0d9a8 0%,#e8cfaa 100%);
-  border-top:3px solid var(--gold);
-  border-bottom:3px solid var(--gold);
-}
-
-.info-box{
-  max-width:680px;
-  margin:0 auto;
-  text-align:center;
-}
-
-/* Dramatic info headings */
-.info-heading{
-  font-family:'Playfair Display',serif;
-  font-size:1.3rem;
-  font-weight:900;
-  background:linear-gradient(135deg,#7a3200,#c26b1a,#ff9500);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-  margin-bottom:10px;
-}
-
-.info p{
-  line-height:2;
-  color:var(--ink-dark);
-  font-size:0.97rem;
-}
-
-.divider{
-  margin:22px auto;
-  width:80px;
-  height:3px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  border-radius:2px;
-}
-
-/* ===== FOOTER — kayu gelap ===== */
-footer{
-  text-align:center;
-  padding:25px 20px;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,transparent 4px,
-      rgba(0,0,0,0.1) 4px,rgba(0,0,0,0.1) 8px
-    ),
-    linear-gradient(180deg,#251005 0%,#3b1a08 50%,#251005 100%);
-  border-top:5px double var(--gold);
-  color:var(--gold-light);
-  font-size:0.92rem;
-}
-
-footer .footer-brand{
-  font-family:'Cinzel Decorative','Playfair Display',serif;
-  font-size:1.1rem;
-  background:linear-gradient(90deg,#ffe066,#ffb347,#ffe066);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  letter-spacing:0.1em;
-  margin-bottom:8px;
-  filter:drop-shadow(0 0 6px rgba(255,180,0,0.5));
-}
-
-footer .footer-sub{
-  color:rgba(240,201,107,0.7);
-  letter-spacing:0.08em;
-}
-
-/* ===== FLOATING WA ===== */
-.floating-wa{
-  position:fixed;
-  right:18px;
-  bottom:18px;
-  background:linear-gradient(135deg,#1a9e4a,#25D366);
-  color:white;
-  padding:13px 18px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:700;
-  font-size:0.95rem;
-  box-shadow:0 4px 15px rgba(37,211,102,0.5);
-  z-index:999;
-  transition:all 0.2s;
-  border:2px solid rgba(255,255,255,0.3);
-}
-.floating-wa:hover{
-  transform:scale(1.05);
-  box-shadow:0 6px 22px rgba(37,211,102,0.7);
-}
-
-/* ===== WOOD SIDE PANELS (desktop) ===== */
-@media(min-width:980px){
-  .page-wrapper{
-    box-shadow:
-      -30px 0 40px rgba(0,0,0,0.5),
-       30px 0 40px rgba(0,0,0,0.5);
-  }
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:600px){
-  .flaming-title{font-size:1.4rem;}
-  .coming-soon-wrap ul{columns:1;}
-  .products{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));}
-  .coming-soon-wrap{padding:20px 18px;}
+/* ===== WA FLOATING ===== */
+.wa {
+  position: fixed;
+  right: 16px;
+  bottom: 80px;
+  background: #25D366;
+  color: #fff;
+  padding: 13px 18px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: .9rem;
+  z-index: 999;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
 }
 </style>
 </head>
-
 <body>
-<div class="page-wrapper">
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-inner">
-    🍜 Makanan Rumahan &nbsp;•&nbsp; 🧋 Minuman Segar &nbsp;•&nbsp; 🍰 Aneka Kue &nbsp;•&nbsp; Harga Bersahabat &nbsp;•&nbsp; Pesan Via WhatsApp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    🍜 Makanan Rumahan &nbsp;•&nbsp; 🧋 Minuman Segar &nbsp;•&nbsp; 🍰 Aneka Kue &nbsp;•&nbsp; Harga Bersahabat &nbsp;•&nbsp; Pesan Via WhatsApp
+<!-- HEADER FIXED -->
+<header class="site-header" id="siteHeader">
+  <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/header.webp" alt="Header Rumah Kuliner Mbak Yulli Merapi">
+</header>
+
+<!-- AREA KONTEN SCROLL -->
+<div class="scroll-area" id="scrollArea">
+  <div class="container">
+
+    <!-- HERO HOOK -->
+    <div class="glass hero-hook">
+      <h1>🍜 Bingung Mau Makan Apa Hari Ini?</h1>
+      <p>
+        Mie Tek-Tek Rebus favorit pelanggan, Mie Goreng Jowo bumbu medok,
+        Lotis Buah segar, minuman dingin yang bikin nagih, dan cemilan favorit keluarga.
+      </p>
+      <p><b>🛵 Delivery Minimal 2 Porsi</b></p>
+      <a class="cta" href="https://wa.me/6282377160602?text=Halo%20Mbak%20Yulli,%20saya%20ingin%20pesan.">💬 Pesan Sekarang</a>
+    </div>
+
+    <!-- BEST SELLER -->
+    <div class="glass">
+      <div class="feature">
+        <div>
+          <span class="badge">BEST SELLER</span>
+          <h2 style="font-size:1.1rem">Mie Tek-Tek Rebus</h2>
+          <p style="margin:8px 0;line-height:1.7;font-size:.88rem">
+            Kuah gurih, hangat, dan jadi menu yang paling sering dipesan pelanggan.
+            Cocok untuk makan siang, malam, maupun saat cuaca dingin.
+          </p>
+          <div class="big-price">13K</div>
+        </div>
+        <div>
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus">
+        </div>
+      </div>
+    </div>
+
+    <!-- MENU FAVORIT -->
+    <div class="glass">
+      <h2 class="section-title">🔥 Menu Favorit Pelanggan</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus">
+          <div class="card-body"><h3>Mie Tek-Tek Rebus</h3><div class="price">13K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-goreng-jowo.webp" alt="Mie Goreng Jowo">
+          <div class="card-body"><h3>Mie Goreng Jowo</h3><div class="price">13K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-godog-jowo.webp" alt="Mie Godog Jowo">
+          <div class="card-body"><h3>Mie Godog Jowo</h3><div class="price">13K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/rujak-buah-lotis.webp" alt="Lotis Buah">
+          <div class="card-body"><h3>Lotis Buah</h3><div class="price">12K</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MINUMAN SEGAR -->
+    <div class="glass">
+      <h2 class="section-title">🥤 Minuman Segar</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-matcha.webp" alt="Es Matcha">
+          <div class="card-body"><h3>Es Matcha</h3><div class="price">10K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-thai-tea.webp" alt="Es Thai Tea">
+          <div class="card-body"><h3>Es Thai Tea</h3><div class="price">10K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-mojito-jumbo.webp" alt="Es Mojito">
+          <div class="card-body"><h3>Es Mojito Varian Rasa</h3><div class="price">7K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-jeruk.jpeg" alt="Es Jeruk">
+          <div class="card-body"><h3>Es Jeruk</h3><div class="price">5K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-kopi-gula-aren.png" alt="Es Kopi Gula Aren">
+          <div class="card-body"><h3>Es Kopi Gula Aren</h3><div class="price">10K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-teh-hijau-jumbo.webp" alt="Es Teh Hijau">
+          <div class="card-body"><h3>Es Teh Hijau</h3><div class="price">5K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-tongji-jumbo.jpg" alt="Es Teh Tong Tji">
+          <div class="card-body"><h3>Es Teh Tong Tji</h3><div class="price">5K</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CEMILAN -->
+    <div class="glass">
+      <h2 class="section-title">🍢 Cemilan Favorit</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/cilor.webp" alt="Cilor">
+          <div class="card-body"><h3>Cilor</h3><div class="price">10K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/sempol-ayam.webp" alt="Sempol Ayam">
+          <div class="card-body"><h3>Sempol Ayam</h3><div class="price">12K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kentang-goreng.webp" alt="Kentang Goreng">
+          <div class="card-body"><h3>Kentang Goreng</h3><div class="price">12K</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/cireng-original.webp" alt="Cireng Original">
+          <div class="card-body"><h3>Cireng Original</h3><div class="price">12K</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANEKA KUE -->
+    <div class="glass">
+      <h2 class="section-title">🍰 Aneka Kue</h2>
+      <p style="text-align:center;margin-bottom:14px;font-size:.88rem">Cocok untuk acara keluarga, rapat, arisan dan pesanan harian.</p>
+      <div class="grid">
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-lapis.webp" alt="Kue Lapis">
+          <div class="card-body"><h3>Kue Lapis</h3><div class="price">2K / pcs</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-risoles.png" alt="Risoles">
+          <div class="card-body"><h3>Risoles</h3><div class="price">1.5K / pcs</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-pastel.png" alt="Pastel">
+          <div class="card-body"><h3>Pastel</h3><div class="price">2K / pcs</div></div>
+        </div>
+        <div class="card">
+          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-putu-ayu.webp" alt="Putu Ayu">
+          <div class="card-body"><h3>Putu Ayu</h3><div class="price">1.5K / pcs</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATERING -->
+    <div class="glass catering-box">
+      <h2>🍱 Menerima Pesanan Catering, Nasi Kotak & Aneka Kue</h2>
+      <p>Siap melayani kebutuhan acara keluarga, rapat, arisan dan berbagai kegiatan lainnya.</p>
+      <h3>Mbak Yulli Merapi<br>📞  0823-7716-0602</h3>
+    </div>
+
+    <!-- SPACER bawah supaya konten terakhir tidak ketutup footer -->
+    <div style="height:20px"></div>
+
   </div>
 </div>
 
-<!-- HEADER -->
-<header>
-  <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/logo.jpg" alt="Logo Rumah Kuliner Mbak Yulli">
-
-  <h1 class="flaming-title">Rumah Kuliner<br>Mbak Yulli Merapi</h1>
-
-  <div class="tagline">✦ Masakan Rumahan Rasa Istimewa ✦</div>
-
-  <div class="desc">
-    Menyediakan makanan, minuman, dan aneka kue dengan cita rasa rumahan.<br>
-    Cocok untuk keluarga, acara, arisan, rapat, maupun pesanan harian.
-  </div>
-
-  <div class="delivery-note">🏠 Bisa Datang ke Rumah Kuliner &nbsp;|&nbsp; 🛵 Atau Diantar</div>
-</header>
-
-<!-- HERO CTA -->
-<section class="hero">
-  <a class="btn btn-wa"
-     href="https://wa.me/6282377160602?text=Halo%20Mbak%20Yulli,%20saya%20ingin%20pesan%20menu."
-     target="_blank">
-    💬 Pesan Sekarang
-  </a>
-  <div class="contact-box">
-    📞 0823-7716-0602 &nbsp;•&nbsp; 👩 Mbak Yulli Merapi
-  </div>
-</section>
-
-<!-- MENU MINUMAN -->
-<section class="section section-parchment">
-  <h2 class="section-title"><span>🧋 Menu Minuman</span></h2>
-
-  <div class="products">
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-mojito-jumbo.png" alt="Es Mojito">
-      <div class="card-body">
-        <h3>Es Mojito</h3>
-        <div class="price">6K / gelas</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-teh-hijau-jumbo.png" alt="Es Teh Hijau">
-      <div class="card-body">
-        <h3>Es Teh Hijau</h3>
-        <div class="price">5K / gelas</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-tongji-jumbo.jpg" alt="Es Teh Tong Tji">
-      <div class="card-body">
-        <h3>Es Teh Tong Tji</h3>
-        <div class="price">5K / gelas</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- MENU MAKANAN -->
-<section class="section section-parchment-alt">
-  <h2 class="section-title"><span>🍜 Menu Makanan</span></h2>
-
-  <div class="products">
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-godog-jowo.jpeg" alt="Mie Godog Jowo">
-      <div class="card-body">
-        <h3>Mie Godog Jowo</h3>
-        <div class="price">13K / porsi</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-goreng-jowo.jpeg" alt="Mie Goreng Jowo">
-      <div class="card-body">
-        <h3>Mie Goreng Jowo</h3>
-        <div class="price">13K / porsi</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-tektek-rebus.jpeg" alt="Mie Tek Tek">
-      <div class="card-body">
-        <h3>Mie Tek Tek</h3>
-        <div class="price">13K / porsi</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/rujak-buah-lotis.jpeg" alt="Lotis Buah">
-      <div class="card-body">
-        <h3>Lotis Buah</h3>
-        <div class="price">12K / porsi</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ANEKA KUE -->
-<section class="section section-parchment">
-  <h2 class="section-title"><span>🍰 Aneka Kue</span></h2>
-
-  <div class="products">
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-lapis.png" alt="Kue Lapis">
-      <div class="card-body">
-        <h3>Kue Lapis</h3>
-        <div class="price">2K / pcs</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-risoles.png" alt="Kue Risoles">
-      <div class="card-body">
-        <h3>Kue Risoles</h3>
-        <div class="price">1.5K / pcs</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-pastel.png" alt="Kue Pastel">
-      <div class="card-body">
-        <h3>Kue Pastel</h3>
-        <div class="price">2K / pcs</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-putu-ayu.png" alt="Kue Putu Ayu">
-      <div class="card-body">
-        <h3>Kue Putu Ayu</h3>
-        <div class="price">1.5K / pcs</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SEGERA HADIR -->
-<section class="section section-parchment-alt">
-  <h2 class="section-title"><span>🔜 Segera Hadir</span></h2>
-
-  <div class="coming-soon-wrap">
-    <div class="coming-soon-badge">✦ Coming Soon ✦</div>
-    <ul>
-      <li>Bakso Malang</li>
-      <li>Bakso Tekwan</li>
-      <li>Nasi Soto Ayam</li>
-      <li>Nasi Pecel Lele</li>
-      <li>Nasi Ayam Bakar</li>
-      <li>Nasi Ayam Goreng</li>
-      <li>Nasi Ikan Nila Goreng</li>
-      <li>Nasi Pindang Patin</li>
-      <li>Es Jeruk</li>
-      <li>Jeruk Panas</li>
-      <li>Teh Panas</li>
-      <li>Es Campur</li>
-      <li>Kopi Hitam</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ALAMAT & KONTAK -->
-<section class="info">
-  <div class="info-box">
-
-    <div class="info-heading">📍 Alamat</div>
-    <p>
-      Rumah Kuliner Mbak Yulli Merapi<br>
-      Jln 2 Rt 23 Rw 07 Kamp. Fajar Mataram<br>
-      Kec. Seputih Mataram, Kab. Lam-Teng
-    </p>
-
-    <div class="divider"></div>
-
-    <div class="info-heading">📞 Hubungi Kami</div>
-    <p>
-      Mbak Yulli Merapi<br>
-      0823-7716-0602
-    </p>
-
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-brand">Rumah Kuliner Mbak Yulli Merapi</div>
-  <div class="footer-sub">© 2026 &nbsp;•&nbsp; Makanan &nbsp;•&nbsp; Minuman &nbsp;•&nbsp; Aneka Kue</div>
+<!-- FOOTER FIXED -->
+<footer class="site-footer" id="siteFooter">
+  <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/footer.webp" alt="Footer Rumah Kuliner Mbak Yulli Merapi">
 </footer>
 
-</div><!-- end page-wrapper -->
+<!-- WA FLOATING -->
+<a class="wa" href="https://wa.me/6282377160602">💬 WA Pesan</a>
 
-<!-- FLOATING WA -->
-<a class="floating-wa"
-   href="https://wa.me/6282377160602?text=Halo%20Mbak%20Yulli,%20saya%20ingin%20pesan%20menu."
-   target="_blank">
-  💬 WA Mbak Yulli
-</a>
+<script>
+  // Otomatis ukur tinggi header & footer lalu set padding scroll area
+  function adjustLayout() {
+    const header = document.getElementById('siteHeader');
+    const footer = document.getElementById('siteFooter');
+    const scrollArea = document.getElementById('scrollArea');
+    const hh = header.offsetHeight;
+    const fh = footer.offsetHeight;
+    scrollArea.style.marginTop = hh + 'px';
+    scrollArea.style.marginBottom = fh + 'px';
+    scrollArea.style.height = 'calc(100vh - ' + (hh + fh) + 'px)';
+  }
+
+  // Jalankan saat load dan saat gambar header/footer selesai load
+  window.addEventListener('load', adjustLayout);
+  window.addEventListener('resize', adjustLayout);
+
+  // Fallback: coba lagi setelah 500ms kalau gambar belum keload
+  setTimeout(adjustLayout, 500);
+  setTimeout(adjustLayout, 1200);
+</script>
 
 </body>
 </html>
