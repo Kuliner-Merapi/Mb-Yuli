@@ -54,7 +54,6 @@ body {
   bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  /* Padding dinamis diatur via JavaScript di bagian bawah */
   padding: 115px 16px 180px 16px;
   z-index: 1;
 }
@@ -69,7 +68,6 @@ body {
   backdrop-filter: blur(4px);
   border-radius: 16px;
   padding: 16px;
-  /* Diubah menjadi auto agar posisi kartu presisi di tengah (seimbang kanan-kiri) */
   margin: 10px auto; 
   width: 100%;
   box-shadow: 0 4px 16px rgba(0,0,0,.12);
@@ -122,8 +120,13 @@ body {
 .feature img {
   width: 100%;
   border-radius: 12px;
-  object-fit: contain;
-  max-height: 140px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.feature img:hover {
+  transform: scale(1.03);
 }
 .big-price {
   font-size: 1.6rem;
@@ -153,19 +156,27 @@ body {
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 3px 10px rgba(0,0,0,.1);
+  display: flex;
+  flex-direction: column;
 }
 .card img {
   width: 100%;
-  height: auto;
-  max-height: 130px;
-  object-fit: contain;
+  aspect-ratio: 1 / 1;  
+  object-fit: cover;    
   display: block;
-  background: #fdf6ee;
-  padding: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.card img:hover {
+  transform: scale(1.04);
 }
 .card-body {
   padding: 8px;
   text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .card-body h3 {
   font-size: .8rem;
@@ -213,11 +224,49 @@ body {
   z-index: 200;
   box-shadow: 0 4px 14px rgba(0,0,0,.3);
 }
+
+/* ===== 📌 STYLE BARU: BACKGROUND GELAP ZOOM (LIGHTBOX) ===== */
+.zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  cursor: zoom-out;
+}
+.zoom-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.zoom-img {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+.zoom-overlay.active .zoom-img {
+  transform: scale(1);
+}
 </style>
 </head>
 <body>
 
 <div class="frame-overlay" id="frameOverlay"></div>
+
+<div class="zoom-overlay" id="zoomOverlay">
+  <img src="" class="zoom-img" id="zoomImg" alt="Pratinjau Besar">
+</div>
 
 <div class="page-wrapper">
 
@@ -247,7 +296,7 @@ body {
             <div class="big-price">13K</div>
           </div>
           <div>
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus" class="can-zoom">
           </div>
         </div>
       </div>
@@ -256,23 +305,23 @@ body {
         <h2 class="section-title">🔥 Menu Favorit Pelanggan</h2>
         <div class="grid">
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus" class="can-zoom">
             <div class="card-body"><h3>Mie Tek-Tek Rebus</h3><div class="price">13K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-goreng-jowo.webp" alt="Mie Goreng Jowo">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-goreng-jowo.webp" alt="Mie Goreng Jowo" class="can-zoom">
             <div class="card-body"><h3>Mie Goreng Jowo</h3><div class="price">13K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-godog-jowo.webp" alt="Mie Godog Jowo">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-godog-jowo.webp" alt="Mie Godog Jowo" class="can-zoom">
             <div class="card-body"><h3>Mie Godog Jowo</h3><div class="price">13K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/rujak-buah-lotis.webp" alt="Lotis Buah">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/rujak-buah-lotis.webp" alt="Lotis Buah" class="can-zoom">
             <div class="card-body"><h3>Lotis Buah</h3><div class="price">12K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-ayam.webp" alt="Mie Ayam">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-ayam.webp" alt="Mie Ayam" class="can-zoom">
             <div class="card-body"><h3>Mie Ayam</h3><div class="price">12K</div></div>
           </div>
         </div>
@@ -282,31 +331,31 @@ body {
         <h2 class="section-title">🥤 Minuman Segar</h2>
         <div class="grid">
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-matcha.webp" alt="Es Matcha">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-matcha.webp" alt="Es Matcha" class="can-zoom">
             <div class="card-body"><h3>Es Matcha</h3><div class="price">10K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-thai-tea.webp" alt="Es Thai Tea">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-thai-tea.webp" alt="Es Thai Tea" class="can-zoom">
             <div class="card-body"><h3>Es Thai Tea</h3><div class="price">10K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-mojito-jumbo.webp" alt="Es Mojito">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-mojito-jumbo.webp" alt="Es Mojito" class="can-zoom">
             <div class="card-body"><h3>Es Mojito Varian Rasa</h3><div class="price">7K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-jeruk.webp" alt="Es Jeruk">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-jeruk.webp" alt="Es Jeruk" class="can-zoom">
             <div class="card-body"><h3>Es Jeruk</h3><div class="price">5K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-kopi-gula-aren.webp" alt="Es Kopi Gula Aren">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-kopi-gula-aren.webp" alt="Es Kopi Gula Aren" class="can-zoom">
             <div class="card-body"><h3>Es Kopi Gula Aren</h3><div class="price">10K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-teh-hijau-jumbo.webp" alt="Es Teh Hijau">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-teh-hijau-jumbo.webp" alt="Es Teh Hijau" class="can-zoom">
             <div class="card-body"><h3>Es Teh Hijau</h3><div class="price">5K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-tongji-jumbo.webp" alt="Es Teh Tong Tji">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-tongji-jumbo.webp" alt="Es Teh Tong Tji" class="can-zoom">
             <div class="card-body"><h3>Es Teh Tong Tji</h3><div class="price">5K</div></div>
           </div>
         </div>
@@ -316,19 +365,19 @@ body {
         <h2 class="section-title">🍢 Cemilan Favorit</h2>
         <div class="grid">
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/cilor.webp" alt="Cilor">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/cilor.webp" alt="Cilor" class="can-zoom">
             <div class="card-body"><h3>Cilor</h3><div class="price">10K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/sempol-ayam.webp" alt="Sempol Ayam">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/sempol-ayam.webp" alt="Sempol Ayam" class="can-zoom">
             <div class="card-body"><h3>Sempol Ayam</h3><div class="price">12K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kentang-goreng.webp" alt="Kentang Goreng">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kentang-goreng.webp" alt="Kentang Goreng" class="can-zoom">
             <div class="card-body"><h3>Kentang Goreng</h3><div class="price">12K</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/cireng-original.webp" alt="Cireng Original">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/cireng-original.webp" alt="Cireng Original" class="can-zoom">
             <div class="card-body"><h3>Cireng Original</h3><div class="price">12K</div></div>
           </div>
         </div>
@@ -339,19 +388,19 @@ body {
         <p style="text-align:center;margin-bottom:12px;font-size:.82rem">Cocok untuk acara keluarga, rapat, arisan dan pesanan harian.</p>
         <div class="grid">
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-lapis.webp" alt="Kue Lapis">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-lapis.webp" alt="Kue Lapis" class="can-zoom">
             <div class="card-body"><h3>Kue Lapis</h3><div class="price">2K / pcs</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-risoles.webp" alt="Risoles">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-risoles.webp" alt="Risoles" class="can-zoom">
             <div class="card-body"><h3>Risoles</h3><div class="price">1.5K / pcs</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-pastel.webp" alt="Pastel">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-pastel.webp" alt="Pastel" class="can-zoom">
             <div class="card-body"><h3>Pastel</h3><div class="price">2K / pcs</div></div>
           </div>
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-putu-ayu.webp" alt="Putu Ayu">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-putu-ayu.webp" alt="Putu Ayu" class="can-zoom">
             <div class="card-body"><h3>Putu Ayu</h3><div class="price">1.5K / pcs</div></div>
           </div>
         </div>
@@ -376,11 +425,9 @@ body {
 <a class="wa" href="https://wa.me/6282377160602">💬 WA Pesan</a>
 
 <script>
-  // PENGATURAN TATA LETAK JALUR FRAME (VERSI 5)
-  // Nilai FRAME_TOP diturunkan ke 115px agar Hero Hook bergeser naik pas di bawah spanduk header
   const FRAME_TOP    = 115;  
   const FRAME_BOTTOM = 180;  
-  const FRAME_SIDE   = 16;   // Diadaptasi seimbang kanan-kiri
+  const FRAME_SIDE   = 16;   
 
   function applyPadding() {
     const sa = document.getElementById('scrollArea');
@@ -392,6 +439,22 @@ body {
 
   window.addEventListener('load', applyPadding);
   window.addEventListener('resize', applyPadding);
+
+  // 📌 JAVASCRIPT OTOMATIS: Fungsi Klik Perbesar & Perkecil Gambar
+  const overlay = document.getElementById('zoomOverlay');
+  const zoomImg = document.getElementById('zoomImg');
+  const images  = document.querySelectorAll('.can-zoom, .card img');
+
+  images.forEach(img => {
+    img.addEventListener('click', function() {
+      zoomImg.src = this.src;
+      overlay.classList.add('active');
+    });
+  });
+
+  overlay.addEventListener('click', function() {
+    overlay.classList.remove('active');
+  });
 </script>
 
 </body>
