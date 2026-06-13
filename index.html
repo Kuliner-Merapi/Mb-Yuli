@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=390px, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Rumah Kuliner Mbak Yulli Merapi</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -11,104 +11,103 @@
 html, body {
   height: 100%;
   overflow: hidden;
+  background: url('https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/bg.webp') center center / cover fixed;
 }
 
 body {
   font-family: Poppins, sans-serif;
-  background: url('https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/bg.webp') center top / cover fixed;
   color: #3c2415;
   display: flex;
-  flex-direction: column;
-  max-width: 430px;
-  margin: 0 auto;
-  position: relative;
+  justify-content: center;
+  align-items: stretch;
 }
 
-/* ===== HEADER FIXED ===== */
-.site-header {
+/* ===== WRAPPER UTAMA ===== */
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ===== FRAME OVERLAY (bgt.webp) ===== */
+.frame-overlay {
   position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   max-width: 430px;
-  z-index: 1000;
-}
-.site-header img {
-  width: 100%;
-  display: block;
-}
-
-/* ===== FOOTER FIXED ===== */
-.site-footer {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 430px;
-  z-index: 1000;
-}
-.site-footer img {
-  width: 100%;
-  display: block;
+  height: 100vh;
+  z-index: 100;
+  pointer-events: none;
+  background: url('https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/bgt.webp') center top / 100% 100% no-repeat;
 }
 
-/* ===== KONTEN SCROLL DI TENGAH ===== */
+/* ===== AREA KONTEN SCROLL ===== */
 .scroll-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  /* tinggi header & footer diestimasi, akan di-set via JS */
-  flex: 1;
+  /* Padding dinamis diatur via JavaScript di bagian bawah */
+  padding: 115px 16px 180px 16px;
+  z-index: 1;
 }
 
 .container {
-  padding: 10px 12px;
+  width: 100%;
 }
 
 /* ===== GLASS CARD ===== */
 .glass {
-  background: rgba(255, 250, 240, 0.93);
+  background: rgba(255, 250, 240, 0.88);
   backdrop-filter: blur(4px);
-  border-radius: 20px;
-  padding: 18px;
-  margin: 12px 0;
-  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  border-radius: 16px;
+  padding: 16px;
+  /* Diubah menjadi auto agar posisi kartu presisi di tengah (seimbang kanan-kiri) */
+  margin: 10px auto; 
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
 }
 
 /* ===== HERO HOOK ===== */
 .hero-hook {
   text-align: center;
-  padding: 18px 14px;
+  padding: 14px 10px;
 }
 .hero-hook h1 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   color: #9b2d00;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   line-height: 1.4;
 }
 .hero-hook p {
-  font-size: .95rem;
+  font-size: .88rem;
   line-height: 1.8;
   margin-bottom: 6px;
 }
 .cta {
   display: inline-block;
-  margin-top: 14px;
+  margin-top: 12px;
   background: #25D366;
   color: white;
-  padding: 14px 26px;
+  padding: 12px 24px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 700;
-  font-size: .95rem;
+  font-size: .9rem;
 }
 
 /* ===== SECTION TITLE ===== */
 .section-title {
   text-align: center;
-  font-size: 1.25rem;
-  margin-bottom: 14px;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
   color: #8d2f00;
   font-weight: 700;
 }
@@ -117,27 +116,27 @@ body {
 .feature {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 12px;
   align-items: center;
 }
 .feature img {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 12px;
   object-fit: contain;
-  max-height: 160px;
+  max-height: 140px;
 }
 .big-price {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 800;
   color: #d32f2f;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 .badge {
   background: #ff9800;
   color: #fff;
-  padding: 5px 11px;
+  padding: 4px 10px;
   border-radius: 20px;
-  font-size: .75rem;
+  font-size: .72rem;
   font-weight: 700;
   display: inline-block;
   margin-bottom: 6px;
@@ -147,34 +146,34 @@ body {
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 10px;
 }
 .card {
   background: white;
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  box-shadow: 0 3px 10px rgba(0,0,0,.1);
 }
 .card img {
   width: 100%;
   height: auto;
-  max-height: 160px;
+  max-height: 130px;
   object-fit: contain;
   display: block;
   background: #fdf6ee;
   padding: 6px;
 }
 .card-body {
-  padding: 10px;
+  padding: 8px;
   text-align: center;
 }
 .card-body h3 {
-  font-size: .85rem;
+  font-size: .8rem;
   margin-bottom: 4px;
   line-height: 1.3;
 }
 .price {
-  font-size: 1rem;
+  font-size: .95rem;
   font-weight: 800;
   color: #d32f2f;
 }
@@ -184,18 +183,18 @@ body {
   text-align: center;
 }
 .catering-box h2 {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
+  font-size: 1rem;
+  margin-bottom: 8px;
   color: #7a1f00;
   line-height: 1.4;
 }
 .catering-box p {
-  font-size: .9rem;
+  font-size: .85rem;
   line-height: 1.7;
   margin-bottom: 8px;
 }
 .catering-box h3 {
-  font-size: 1rem;
+  font-size: .95rem;
   color: #3c2415;
 }
 
@@ -203,205 +202,196 @@ body {
 .wa {
   position: fixed;
   right: 16px;
-  bottom: 80px;
+  bottom: 190px;
   background: #25D366;
   color: #fff;
-  padding: 13px 18px;
+  padding: 11px 16px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 700;
-  font-size: .9rem;
-  z-index: 999;
-  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+  font-size: .85rem;
+  z-index: 200;
+  box-shadow: 0 4px 14px rgba(0,0,0,.3);
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER FIXED -->
-<header class="site-header" id="siteHeader">
-  <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/header.webp" alt="Header Rumah Kuliner Mbak Yulli Merapi">
-</header>
+<div class="frame-overlay" id="frameOverlay"></div>
 
-<!-- AREA KONTEN SCROLL -->
-<div class="scroll-area" id="scrollArea">
-  <div class="container">
+<div class="page-wrapper">
 
-    <!-- HERO HOOK -->
-    <div class="glass hero-hook">
-      <h1>🍜 Bingung Mau Makan Apa Hari Ini?</h1>
-      <p>
-        Mie Tek-Tek Rebus favorit pelanggan, Mie Goreng Jowo bumbu medok,
-        Lotis Buah segar, minuman dingin yang bikin nagih, dan cemilan favorit keluarga.
-      </p>
-      <p><b>🛵 Delivery Minimal 2 Porsi</b></p>
-      <a class="cta" href="https://wa.me/6282377160602?text=Halo%20Mbak%20Yulli,%20saya%20ingin%20pesan.">💬 Pesan Sekarang</a>
-    </div>
+  <div class="scroll-area" id="scrollArea">
+    <div class="container">
 
-    <!-- BEST SELLER -->
-    <div class="glass">
-      <div class="feature">
-        <div>
-          <span class="badge">BEST SELLER</span>
-          <h2 style="font-size:1.1rem">Mie Tek-Tek Rebus</h2>
-          <p style="margin:8px 0;line-height:1.7;font-size:.88rem">
-            Kuah gurih, hangat, dan jadi menu yang paling sering dipesan pelanggan.
-            Cocok untuk makan siang, malam, maupun saat cuaca dingin.
-          </p>
-          <div class="big-price">13K</div>
-        </div>
-        <div>
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus">
+      <div class="glass hero-hook">
+        <h1>🍜 Bingung Mau Makan Apa Hari Ini?</h1>
+        <p>
+          Mie Tek-Tek Rebus favorit pelanggan, Mie Goreng Jowo bumbu medok,
+          Lotis Buah segar, minuman dingin yang bikin nagih, dan cemilan favorit keluarga.
+        </p>
+        <p><b>🛵 Delivery Minimal 2 Porsi</b></p>
+        <a class="cta" href="https://wa.me/6282377160602?text=Halo%20Mbak%20Yulli,%20saya%20ingin%20pesan.">💬 Pesan Sekarang</a>
+        <p style="margin-top:10px;font-size:.82rem;color:#5a3e2b;">💳 Pembayaran bisa Tunai, Transfer ke DANA &amp; BRI</p>
+      </div>
+
+      <div class="glass">
+        <div class="feature">
+          <div>
+            <span class="badge">BEST SELLER</span>
+            <h2 style="font-size:1rem">Mie Tek-Tek Rebus</h2>
+            <p style="margin:6px 0;line-height:1.7;font-size:.82rem">
+              Kuah gurih, hangat, dan jadi menu yang paling sering dipesan pelanggan.
+              Cocok untuk makan siang, malam, maupun saat cuaca dingin.
+            </p>
+            <div class="big-price">13K</div>
+          </div>
+          <div>
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus">
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- MENU FAVORIT -->
-    <div class="glass">
-      <h2 class="section-title">🔥 Menu Favorit Pelanggan</h2>
-      <div class="grid">
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus">
-          <div class="card-body"><h3>Mie Tek-Tek Rebus</h3><div class="price">13K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-goreng-jowo.webp" alt="Mie Goreng Jowo">
-          <div class="card-body"><h3>Mie Goreng Jowo</h3><div class="price">13K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-godog-jowo.webp" alt="Mie Godog Jowo">
-          <div class="card-body"><h3>Mie Godog Jowo</h3><div class="price">13K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/rujak-buah-lotis.webp" alt="Lotis Buah">
-          <div class="card-body"><h3>Lotis Buah</h3><div class="price">12K</div></div>
+      <div class="glass">
+        <h2 class="section-title">🔥 Menu Favorit Pelanggan</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus">
+            <div class="card-body"><h3>Mie Tek-Tek Rebus</h3><div class="price">13K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-goreng-jowo.webp" alt="Mie Goreng Jowo">
+            <div class="card-body"><h3>Mie Goreng Jowo</h3><div class="price">13K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-godog-jowo.webp" alt="Mie Godog Jowo">
+            <div class="card-body"><h3>Mie Godog Jowo</h3><div class="price">13K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/rujak-buah-lotis.webp" alt="Lotis Buah">
+            <div class="card-body"><h3>Lotis Buah</h3><div class="price">12K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/mie-ayam.webp" alt="Mie Ayam">
+            <div class="card-body"><h3>Mie Ayam</h3><div class="price">12K</div></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- MINUMAN SEGAR -->
-    <div class="glass">
-      <h2 class="section-title">🥤 Minuman Segar</h2>
-      <div class="grid">
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-matcha.webp" alt="Es Matcha">
-          <div class="card-body"><h3>Es Matcha</h3><div class="price">10K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-thai-tea.webp" alt="Es Thai Tea">
-          <div class="card-body"><h3>Es Thai Tea</h3><div class="price">10K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-mojito-jumbo.webp" alt="Es Mojito">
-          <div class="card-body"><h3>Es Mojito Varian Rasa</h3><div class="price">7K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-jeruk.jpeg" alt="Es Jeruk">
-          <div class="card-body"><h3>Es Jeruk</h3><div class="price">5K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-kopi-gula-aren.png" alt="Es Kopi Gula Aren">
-          <div class="card-body"><h3>Es Kopi Gula Aren</h3><div class="price">10K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-teh-hijau-jumbo.webp" alt="Es Teh Hijau">
-          <div class="card-body"><h3>Es Teh Hijau</h3><div class="price">5K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-tongji-jumbo.jpg" alt="Es Teh Tong Tji">
-          <div class="card-body"><h3>Es Teh Tong Tji</h3><div class="price">5K</div></div>
+      <div class="glass">
+        <h2 class="section-title">🥤 Minuman Segar</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-matcha.webp" alt="Es Matcha">
+            <div class="card-body"><h3>Es Matcha</h3><div class="price">10K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-thai-tea.webp" alt="Es Thai Tea">
+            <div class="card-body"><h3>Es Thai Tea</h3><div class="price">10K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-mojito-jumbo.webp" alt="Es Mojito">
+            <div class="card-body"><h3>Es Mojito Varian Rasa</h3><div class="price">7K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-jeruk.jpeg" alt="Es Jeruk">
+            <div class="card-body"><h3>Es Jeruk</h3><div class="price">5K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-kopi-gula-aren.png" alt="Es Kopi Gula Aren">
+            <div class="card-body"><h3>Es Kopi Gula Aren</h3><div class="price">10K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-teh-hijau-jumbo.webp" alt="Es Teh Hijau">
+            <div class="card-body"><h3>Es Teh Hijau</h3><div class="price">5K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/es-tongji-jumbo.jpg" alt="Es Teh Tong Tji">
+            <div class="card-body"><h3>Es Teh Tong Tji</h3><div class="price">5K</div></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- CEMILAN -->
-    <div class="glass">
-      <h2 class="section-title">🍢 Cemilan Favorit</h2>
-      <div class="grid">
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/cilor.webp" alt="Cilor">
-          <div class="card-body"><h3>Cilor</h3><div class="price">10K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/sempol-ayam.webp" alt="Sempol Ayam">
-          <div class="card-body"><h3>Sempol Ayam</h3><div class="price">12K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kentang-goreng.webp" alt="Kentang Goreng">
-          <div class="card-body"><h3>Kentang Goreng</h3><div class="price">12K</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/cireng-original.webp" alt="Cireng Original">
-          <div class="card-body"><h3>Cireng Original</h3><div class="price">12K</div></div>
+      <div class="glass">
+        <h2 class="section-title">🍢 Cemilan Favorit</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/cilor.webp" alt="Cilor">
+            <div class="card-body"><h3>Cilor</h3><div class="price">10K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/sempol-ayam.webp" alt="Sempol Ayam">
+            <div class="card-body"><h3>Sempol Ayam</h3><div class="price">12K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kentang-goreng.webp" alt="Kentang Goreng">
+            <div class="card-body"><h3>Kentang Goreng</h3><div class="price">12K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/cireng-original.webp" alt="Cireng Original">
+            <div class="card-body"><h3>Cireng Original</h3><div class="price">12K</div></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- ANEKA KUE -->
-    <div class="glass">
-      <h2 class="section-title">🍰 Aneka Kue</h2>
-      <p style="text-align:center;margin-bottom:14px;font-size:.88rem">Cocok untuk acara keluarga, rapat, arisan dan pesanan harian.</p>
-      <div class="grid">
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-lapis.webp" alt="Kue Lapis">
-          <div class="card-body"><h3>Kue Lapis</h3><div class="price">2K / pcs</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-risoles.png" alt="Risoles">
-          <div class="card-body"><h3>Risoles</h3><div class="price">1.5K / pcs</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-pastel.png" alt="Pastel">
-          <div class="card-body"><h3>Pastel</h3><div class="price">2K / pcs</div></div>
-        </div>
-        <div class="card">
-          <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-putu-ayu.webp" alt="Putu Ayu">
-          <div class="card-body"><h3>Putu Ayu</h3><div class="price">1.5K / pcs</div></div>
+      <div class="glass">
+        <h2 class="section-title">🍰 Aneka Kue</h2>
+        <p style="text-align:center;margin-bottom:12px;font-size:.82rem">Cocok untuk acara keluarga, rapat, arisan dan pesanan harian.</p>
+        <div class="grid">
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-lapis.webp" alt="Kue Lapis">
+            <div class="card-body"><h3>Kue Lapis</h3><div class="price">2K / pcs</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-risoles.png" alt="Risoles">
+            <div class="card-body"><h3>Risoles</h3><div class="price">1.5K / pcs</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-pastel.png" alt="Pastel">
+            <div class="card-body"><h3>Pastel</h3><div class="price">2K / pcs</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/kue-putu-ayu.webp" alt="Putu Ayu">
+            <div class="card-body"><h3>Putu Ayu</h3><div class="price">1.5K / pcs</div></div>
+          </div>
         </div>
       </div>
+
+      <div class="glass catering-box">
+        <h2>🍱 Menerima Pesanan Catering, Nasi Kotak &amp; Aneka Kue</h2>
+        <p>Siap melayani kebutuhan acara keluarga, rapat, arisan dan berbagai kegiatan lainnya.</p>
+        <h3>Mbak Yulli Merapi<br>📞 0823-7716-0602</h3>
+        <div style="margin-top:12px;font-size:.85rem;line-height:2;">
+          <p>💚 Rek DANA : <b>0823-7716-0602</b></p>
+          <p>🏦 Rek BRI &nbsp;: <b>5600 0100 6509 506</b></p>
+        </div>
+      </div>
+
+      <div style="height:20px"></div>
+
     </div>
-
-    <!-- CATERING -->
-    <div class="glass catering-box">
-      <h2>🍱 Menerima Pesanan Catering, Nasi Kotak & Aneka Kue</h2>
-      <p>Siap melayani kebutuhan acara keluarga, rapat, arisan dan berbagai kegiatan lainnya.</p>
-      <h3>Mbak Yulli Merapi<br>📞  0823-7716-0602</h3>
-    </div>
-
-    <!-- SPACER bawah supaya konten terakhir tidak ketutup footer -->
-    <div style="height:20px"></div>
-
   </div>
 </div>
 
-<!-- FOOTER FIXED -->
-<footer class="site-footer" id="siteFooter">
-  <img src="https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/footer.webp" alt="Footer Rumah Kuliner Mbak Yulli Merapi">
-</footer>
-
-<!-- WA FLOATING -->
 <a class="wa" href="https://wa.me/6282377160602">💬 WA Pesan</a>
 
 <script>
-  // Otomatis ukur tinggi header & footer lalu set padding scroll area
-  function adjustLayout() {
-    const header = document.getElementById('siteHeader');
-    const footer = document.getElementById('siteFooter');
-    const scrollArea = document.getElementById('scrollArea');
-    const hh = header.offsetHeight;
-    const fh = footer.offsetHeight;
-    scrollArea.style.marginTop = hh + 'px';
-    scrollArea.style.marginBottom = fh + 'px';
-    scrollArea.style.height = 'calc(100vh - ' + (hh + fh) + 'px)';
+  // PENGATURAN TATA LETAK JALUR FRAME (VERSI 5)
+  // Nilai FRAME_TOP diturunkan ke 115px agar Hero Hook bergeser naik pas di bawah spanduk header
+  const FRAME_TOP    = 115;  
+  const FRAME_BOTTOM = 180;  
+  const FRAME_SIDE   = 16;   // Diadaptasi seimbang kanan-kiri
+
+  function applyPadding() {
+    const sa = document.getElementById('scrollArea');
+    sa.style.paddingTop    = FRAME_TOP + 'px';
+    sa.style.paddingBottom = FRAME_BOTTOM + 'px';
+    sa.style.paddingLeft   = FRAME_SIDE + 'px';
+    sa.style.paddingRight  = FRAME_SIDE + 'px';
   }
 
-  // Jalankan saat load dan saat gambar header/footer selesai load
-  window.addEventListener('load', adjustLayout);
-  window.addEventListener('resize', adjustLayout);
-
-  // Fallback: coba lagi setelah 500ms kalau gambar belum keload
-  setTimeout(adjustLayout, 500);
-  setTimeout(adjustLayout, 1200);
+  window.addEventListener('load', applyPadding);
+  window.addEventListener('resize', applyPadding);
 </script>
 
 </body>
