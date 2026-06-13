@@ -9,8 +9,9 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 html, body {
-  min-height: 100%;
-  background: #f4ebd9 url('https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/bg.webp') center center / cover fixed;
+  height: 100%;
+  overflow: hidden;
+  background: url('https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/bg.webp') center center / cover fixed;
 }
 
 body {
@@ -18,7 +19,7 @@ body {
   color: #3c2415;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 /* ===== WRAPPER UTAMA ===== */
@@ -26,14 +27,11 @@ body {
   position: relative;
   width: 100%;
   max-width: 430px;
-  min-height: 100vh;
-  box-shadow: 0 0 30px rgba(0,0,0,0.2);
-  /* Menggunakan min-height agar frame memanjang alami jika kontennya panjang */
-  display: flex;
-  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* ===== FRAME OVERLAY FIXED (bgt.webp) ===== */
+/* ===== FRAME OVERLAY (bgt.webp) ===== */
 .frame-overlay {
   position: fixed;
   top: 0;
@@ -44,23 +42,20 @@ body {
   height: 100vh;
   z-index: 100;
   pointer-events: none;
-  /* Menggunakan contain agar seluruh proporsi kertas atas sampai bawah utuh tidak terpotong */
   background: url('https://raw.githubusercontent.com/Chostilla/Kuliner/main/images/bgt.webp') center top / 100% 100% no-repeat;
-}
-
-@media screen and (max-aspect-ratio: 9/16) {
-  .frame-overlay {
-    /* Optimasi khusus layar HP yang sangat panjang/jangkung agar footer tidak mleyot */
-    background-size: 100% 100%;
-  }
 }
 
 /* ===== AREA KONTEN SCROLL ===== */
 .scroll-area {
-  width: 100%;
-  /* Jarak aman diatur dari skrip js bawah secara presisi */
-  padding: 115px 16px 210px 16px;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Padding dinamis diatur via JavaScript di bagian bawah */
+  padding: 115px 16px 180px 16px;
   z-index: 1;
 }
 
@@ -70,11 +65,12 @@ body {
 
 /* ===== GLASS CARD ===== */
 .glass {
-  background: rgba(255, 250, 240, 0.92);
+  background: rgba(255, 250, 240, 0.88);
   backdrop-filter: blur(4px);
   border-radius: 16px;
   padding: 16px;
-  margin: 12px auto; 
+  /* Diubah menjadi auto agar posisi kartu presisi di tengah (seimbang kanan-kiri) */
+  margin: 10px auto; 
   width: 100%;
   box-shadow: 0 4px 16px rgba(0,0,0,.12);
 }
@@ -105,7 +101,6 @@ body {
   text-decoration: none;
   font-weight: 700;
   font-size: .9rem;
-  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
 }
 
 /* ===== SECTION TITLE ===== */
@@ -206,22 +201,17 @@ body {
 /* ===== WA FLOATING ===== */
 .wa {
   position: fixed;
-  left: 50%;
-  /* Menjaga tombol WA mengapung di posisi kanan bawah area bingkai */
-  transform: translateX(110px); 
-  bottom: 120px;
+  right: 16px;
+  bottom: 190px;
   background: #25D366;
   color: #fff;
-  padding: 10px 14px;
+  padding: 11px 16px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 700;
-  font-size: .8rem;
+  font-size: .85rem;
   z-index: 200;
-  box-shadow: 0 4px 14px rgba(0,0,0,.25);
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.3);
 }
 </style>
 </head>
@@ -242,7 +232,7 @@ body {
         </p>
         <p><b>🛵 Delivery Minimal 2 Porsi</b></p>
         <a class="cta" href="https://wa.me/6282377160602?text=Halo%20Mbak%20Yulli,%20saya%20ingin%20pesan.">💬 Pesan Sekarang</a>
-        <p style="margin-top:10px;font-size:.82rem;color:#5a3e2b;">💳 Pembayaran bisa Tunai, Transfer ke DANA &amp; BRI</p>
+        <p style="margin-top:10px;font-size:.82rem;color:#5a3e2b;">💰 Pembayaran bisa Tunai,<br>💳 bisa Transfer ke DANA &amp; BRI</p>
       </div>
 
       <div class="glass">
@@ -377,7 +367,7 @@ body {
         </div>
       </div>
 
-      <div style="height:30px"></div>
+      <div style="height:20px"></div>
 
     </div>
   </div>
@@ -386,10 +376,11 @@ body {
 <a class="wa" href="https://wa.me/6282377160602">💬 WA Pesan</a>
 
 <script>
-  // PENGATURAN TATA LETAK JALUR FRAME (VERSI 6)
+  // PENGATURAN TATA LETAK JALUR FRAME (VERSI 5)
+  // Nilai FRAME_TOP diturunkan ke 115px agar Hero Hook bergeser naik pas di bawah spanduk header
   const FRAME_TOP    = 115;  
-  const FRAME_BOTTOM = 225;  // Menaikkan batas bawah gulir agar tulisan kartu tidak bertabrakan dengan gambar koki
-  const FRAME_SIDE   = 16;   
+  const FRAME_BOTTOM = 180;  
+  const FRAME_SIDE   = 16;   // Diadaptasi seimbang kanan-kiri
 
   function applyPadding() {
     const sa = document.getElementById('scrollArea');
