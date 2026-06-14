@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Rumah Kuliner Mbak Yulli Merapi</title>
+
+<link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/icon192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/icon512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/icon180.png">
+<meta name="theme-color" content="#9b2d00">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -154,6 +160,12 @@ body {
   margin-top: 5px;
 }
 
+/* ===== TUTORIAL SIMPAN SCREEN ===== */
+.tutorial-box { background: rgba(255,255,255,0.92); border: 1.5px dashed #ff9800; }
+.tutorial-steps { text-align: left; margin-top: 10px; font-size: 0.82rem; line-height: 1.6; }
+.tutorial-steps div { margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px dashed #eee; }
+.tutorial-steps div:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
 .catering-box { text-align: center; }
 .catering-box h2 { font-size: 1rem; margin-bottom: 8px; color: #7a1f00; line-height: 1.4; }
 .catering-box p { font-size: .85rem; line-height: 1.7; margin-bottom: 8px; }
@@ -218,10 +230,6 @@ body {
         <p style="margin-top:10px;font-size:.82rem;color:#5a3e2b;">💰 Pembayaran bisa Tunai,<br>💳 bisa Transfer ke DANA &amp; BRI</p>
       </div>
 
-      <!-- =============================================
-           MENU SPESIAL HARI INI
-           Kalau tidak tersedia, tambahkan: style="display:none"
-           ============================================= -->
       <div class="spesial-wrap" id="menuSpesial">
         <div class="spesial-header-bar">
           <div class="spesial-title">⭐ MENU SPESIAL HARI INI ⭐</div>
@@ -255,9 +263,6 @@ body {
           </a>
         </div>
       </div>
-      <!-- ===== AKHIR MENU SPESIAL ===== -->
-
-      <!-- BEST SELLER -->
       <div class="glass">
         <div class="feature">
           <div>
@@ -272,7 +277,6 @@ body {
         </div>
       </div>
 
-      <!-- MENU FAVORIT -->
       <div class="glass">
         <h2 class="section-title">🔥 Menu Favorit Pelanggan</h2>
         <div class="grid">
@@ -299,7 +303,6 @@ body {
         </div>
       </div>
 
-      <!-- MINUMAN -->
       <div class="glass">
         <h2 class="section-title">🥤 Minuman Segar</h2>
         <div class="grid">
@@ -338,7 +341,6 @@ body {
         </div>
       </div>
 
-      <!-- CEMILAN -->
       <div class="glass">
         <h2 class="section-title">🍢 Cemilan Favorit</h2>
         <div class="grid">
@@ -361,7 +363,6 @@ body {
         </div>
       </div>
 
-      <!-- KUE -->
       <div class="glass">
         <h2 class="section-title">🍰 Aneka Kue</h2>
         <p style="text-align:center;margin-bottom:12px;font-size:.82rem">Cocok untuk acara keluarga, rapat, arisan dan pesanan harian.</p>
@@ -385,7 +386,16 @@ body {
         </div>
       </div>
 
-      <!-- CATERING -->
+      <div class="glass tutorial-box">
+        <h2 class="section-title" style="margin-bottom: 6px; font-size: 1rem;">📲 Jadikan Aplikasi di HP Kamu</h2>
+        <p style="text-align:center; font-size: 0.78rem; color: #5a3e2b;">Simpan halaman ini ke layar utama agar pesan menu Dapur Mb. Yuli jadi lebih cepat!</p>
+        <div class="tutorial-steps">
+          <div>🌐 <b>Chrome, Brave &amp; Opera (Android):</b> Klik tombol <b>titik tiga (⋮)</b> di kanan atas, lalu pilih <b>"Tambahkan ke Layar Utama"</b> (atau <i>Instal Aplikasi</i>).</div>
+          <div>🧭 <b>Safari (iPhone):</b> Klik tombol <b>Share (panah kotak)</b> di bagian bawah, lalu pilih <b>"Tambahkan ke Layar Utama"</b>.</div>
+          <div>📱 <b>Browser Bawaan HP:</b> Klik menu garis tiga (☰) atau ikon menu di bawah layar, cari opsi <b>"Tambahkan Halaman ke"</b> lalu pilih <b>"Layar Depan"</b>.</div>
+        </div>
+      </div>
+
       <div class="glass catering-box">
         <h2>🍱 Menerima Pesanan Catering, Nasi Kotak &amp; Aneka Kue</h2>
         <p>Siap melayani kebutuhan acara keluarga, rapat, arisan dan berbagai kegiatan lainnya.</p>
