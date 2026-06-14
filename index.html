@@ -7,13 +7,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 html, body {
   height: 100%;
   overflow: hidden;
   background: url('https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/bg.webp') center center / cover fixed;
 }
-
 body {
   font-family: Poppins, sans-serif;
   color: #3c2415;
@@ -21,8 +19,6 @@ body {
   justify-content: center;
   align-items: stretch;
 }
-
-/* ===== WRAPPER UTAMA ===== */
 .page-wrapper {
   position: relative;
   width: 100%;
@@ -30,8 +26,6 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-
-/* ===== FRAME OVERLAY (bgt.webp) ===== */
 .frame-overlay {
   position: fixed;
   top: 0;
@@ -44,51 +38,27 @@ body {
   pointer-events: none;
   background: url('https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/bgt.webp') center top / 100% 100% no-repeat;
 }
-
-/* ===== AREA KONTEN SCROLL ===== */
 .scroll-area {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 115px 16px 180px 16px;
   z-index: 1;
 }
-
-.container {
-  width: 100%;
-}
-
-/* ===== GLASS CARD ===== */
+.container { width: 100%; }
 .glass {
-  background: rgba(255, 250, 240, 0.88);
+  background: rgba(255,250,240,0.88);
   backdrop-filter: blur(4px);
   border-radius: 16px;
   padding: 16px;
-  margin: 10px auto; 
+  margin: 10px auto;
   width: 100%;
   box-shadow: 0 4px 16px rgba(0,0,0,.12);
 }
-
-/* ===== HERO HOOK ===== */
-.hero-hook {
-  text-align: center;
-  padding: 14px 10px;
-}
-.hero-hook h1 {
-  font-size: 1.35rem;
-  color: #9b2d00;
-  margin-bottom: 6px;
-  line-height: 1.4;
-}
-.hero-hook p {
-  font-size: .88rem;
-  line-height: 1.8;
-  margin-bottom: 6px;
-}
+.hero-hook { text-align: center; padding: 14px 10px; }
+.hero-hook h1 { font-size: 1.35rem; color: #9b2d00; margin-bottom: 6px; line-height: 1.4; }
+.hero-hook p { font-size: .88rem; line-height: 1.8; margin-bottom: 6px; }
 .cta {
   display: inline-block;
   margin-top: 12px;
@@ -100,8 +70,6 @@ body {
   font-weight: 700;
   font-size: .9rem;
 }
-
-/* ===== SECTION TITLE ===== */
 .section-title {
   text-align: center;
   font-size: 1.1rem;
@@ -109,107 +77,87 @@ body {
   color: #8d2f00;
   font-weight: 700;
 }
+.feature { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; }
+.feature img { width: 100%; border-radius: 12px; aspect-ratio: 1/1; object-fit: cover; cursor: pointer; transition: transform 0.2s ease; }
+.feature img:hover { transform: scale(1.03); }
+.big-price { font-size: 1.6rem; font-weight: 800; color: #d32f2f; margin-top: 6px; }
+.badge { background: #ff9800; color: #fff; padding: 4px 10px; border-radius: 20px; font-size: .72rem; font-weight: 700; display: inline-block; margin-bottom: 6px; }
+.grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,.1); display: flex; flex-direction: column; }
+.card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; cursor: pointer; transition: transform 0.2s ease; }
+.card img:hover { transform: scale(1.04); }
+.card-body { padding: 8px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.card-body h3 { font-size: .8rem; margin-bottom: 4px; line-height: 1.3; }
+.price { font-size: .95rem; font-weight: 800; color: #d32f2f; }
 
-/* ===== FEATURE (BEST SELLER) ===== */
-.feature {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  align-items: center;
+/* ===== SPESIAL HARI INI ===== */
+.spesial-wrap {
+  margin: 10px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(180,60,0,.2);
 }
-.feature img {
-  width: 100%;
-  border-radius: 12px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+.spesial-header-bar {
+  background: linear-gradient(90deg, #bf360c, #ff9800, #bf360c);
+  padding: 8px 10px;
+  text-align: center;
 }
-.feature img:hover {
-  transform: scale(1.03);
-}
-.big-price {
-  font-size: 1.6rem;
+.spesial-header-bar .spesial-title {
+  font-size: .82rem;
   font-weight: 800;
-  color: #d32f2f;
-  margin-top: 6px;
-}
-.badge {
-  background: #ff9800;
   color: #fff;
-  padding: 4px 10px;
-  border-radius: 20px;
+  letter-spacing: 1px;
+}
+.spesial-header-bar .spesial-date {
   font-size: .72rem;
-  font-weight: 700;
-  display: inline-block;
-  margin-bottom: 6px;
+  color: #ffe0b2;
+  margin-top: 2px;
 }
-
-/* ===== GRID KARTU MENU ===== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+.spesial-inner {
+  background: linear-gradient(135deg, #fff8f0, #fff0d6);
+  border: 2px solid #ff9800;
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  padding: 14px;
 }
-.card {
+.spesial-inner .sub-note {
+  text-align: center;
+  font-size: .78rem;
+  color: #e65100;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.spesial-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+.spesial-card {
   background: white;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0,0,0,.1);
+  box-shadow: 0 4px 14px rgba(180,60,0,.15);
+  border: 2px solid #ffcc80;
   display: flex;
   flex-direction: column;
 }
-.card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;  
-  object-fit: cover;    
-  display: block;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-.card img:hover {
-  transform: scale(1.04);
-}
-.card-body {
-  padding: 8px;
-  text-align: center;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.card-body h3 {
-  font-size: .8rem;
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
-.price {
-  font-size: .95rem;
-  font-weight: 800;
-  color: #d32f2f;
+.spesial-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; cursor: pointer; transition: transform 0.2s ease; }
+.spesial-card img:hover { transform: scale(1.04); }
+.spesial-card-body { padding: 8px; text-align: center; }
+.spesial-card-body h3 { font-size: .82rem; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
+.spesial-price { font-size: 1.05rem; font-weight: 800; color: #d32f2f; }
+.spesial-note { font-size: .7rem; color: #795548; margin-top: 2px; }
+.stok-badge {
+  background: #e53935;
+  color: #fff;
+  font-size: .67rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 5px;
 }
 
-/* ===== CATERING SECTION ===== */
-.catering-box {
-  text-align: center;
-}
-.catering-box h2 {
-  font-size: 1rem;
-  margin-bottom: 8px;
-  color: #7a1f00;
-  line-height: 1.4;
-}
-.catering-box p {
-  font-size: .85rem;
-  line-height: 1.7;
-  margin-bottom: 8px;
-}
-.catering-box h3 {
-  font-size: .95rem;
-  color: #3c2415;
-}
-
-/* ===== WA FLOATING ===== */
+.catering-box { text-align: center; }
+.catering-box h2 { font-size: 1rem; margin-bottom: 8px; color: #7a1f00; line-height: 1.4; }
+.catering-box p { font-size: .85rem; line-height: 1.7; margin-bottom: 8px; }
+.catering-box h3 { font-size: .95rem; color: #3c2415; }
 .wa {
   position: fixed;
   right: 16px;
@@ -224,15 +172,11 @@ body {
   z-index: 200;
   box-shadow: 0 4px 14px rgba(0,0,0,.3);
 }
-
-/* ===== 📌 STYLE BARU: BACKGROUND GELAP ZOOM (LIGHTBOX) ===== */
 .zoom-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
   backdrop-filter: blur(6px);
   z-index: 9999;
   display: flex;
@@ -243,10 +187,7 @@ body {
   transition: opacity 0.3s ease;
   cursor: zoom-out;
 }
-.zoom-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
+.zoom-overlay.active { opacity: 1; pointer-events: auto; }
 .zoom-img {
   max-width: 90%;
   max-height: 80vh;
@@ -255,44 +196,74 @@ body {
   transform: scale(0.9);
   transition: transform 0.3s ease;
 }
-.zoom-overlay.active .zoom-img {
-  transform: scale(1);
-}
+.zoom-overlay.active .zoom-img { transform: scale(1); }
 </style>
 </head>
 <body>
 
-<div class="frame-overlay" id="frameOverlay"></div>
-
+<div class="frame-overlay"></div>
 <div class="zoom-overlay" id="zoomOverlay">
   <img src="" class="zoom-img" id="zoomImg" alt="Pratinjau Besar">
 </div>
 
 <div class="page-wrapper">
-
   <div class="scroll-area" id="scrollArea">
     <div class="container">
 
       <div class="glass hero-hook">
         <h1>🍜 Bingung Mau Makan Apa Hari Ini?</h1>
-        <p>
-          Mie Tek-Tek Rebus favorit pelanggan, Mie Goreng Jowo bumbu medok,
-          Lotis Buah segar, minuman dingin yang bikin nagih, dan cemilan favorit keluarga.
-        </p>
+        <p>Mie Tek-Tek Rebus favorit pelanggan, Mie Goreng Jowo bumbu medok, Lotis Buah segar, minuman dingin yang bikin nagih, dan cemilan favorit keluarga.</p>
         <p><b>🛵 Delivery Minimal 2 Porsi</b></p>
         <a class="cta" href="https://wa.me/6282377160602?text=Halo%20Mbak%20Yulli,%20saya%20ingin%20pesan.">💬 Pesan Sekarang</a>
         <p style="margin-top:10px;font-size:.82rem;color:#5a3e2b;">💰 Pembayaran bisa Tunai,<br>💳 bisa Transfer ke DANA &amp; BRI</p>
       </div>
 
+      <!-- =============================================
+           MENU SPESIAL HARI INI
+           Kalau tidak tersedia, tambahkan: style="display:none"
+           ============================================= -->
+      <div class="spesial-wrap" id="menuSpesial">
+        <div class="spesial-header-bar">
+          <div class="spesial-title">⭐ MENU SPESIAL HARI INI ⭐</div>
+          <div class="spesial-date" id="tanggalSpesial"></div>
+        </div>
+        <div class="spesial-inner">
+          <div class="sub-note">⚡ Stok terbatas — habis ya sudah!</div>
+          <div class="spesial-grid">
+            <div class="spesial-card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-ayam-bakar.webp" alt="Ayam Goreng/Bakar" class="can-zoom">
+              <div class="spesial-card-body">
+                <h3>Nasi Ayam Goreng / Bakar</h3>
+                <div class="spesial-price">22K</div>
+                <div class="spesial-note">+ lalapan &amp; sambal</div>
+                <span class="stok-badge">Stok Terbatas!</span>
+              </div>
+            </div>
+            <div class="spesial-card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-pecel-lele.webp" alt="Pecel Lele" class="can-zoom">
+              <div class="spesial-card-body">
+                <h3>Nasi Pecel Lele</h3>
+                <div class="spesial-price">17K</div>
+                <div class="spesial-note">+ lalapan &amp; sambal</div>
+                <span class="stok-badge">Stok Terbatas!</span>
+              </div>
+            </div>
+          </div>
+          <a class="cta" style="display:block;text-align:center;margin-top:14px;"
+             href="https://wa.me/6282377160602?text=Halo%20Mbak%20Yulli,%20saya%20mau%20pesan%20Menu%20Spesial%20Hari%20Ini.">
+            💬 Pesan Menu Spesial
+          </a>
+        </div>
+      </div>
+      <!-- ===== AKHIR MENU SPESIAL ===== -->
+
+      <!-- BEST SELLER -->
       <div class="glass">
         <div class="feature">
           <div>
             <span class="badge">BEST SELLER</span>
             <h2 style="font-size:1rem">Mie Tek-Tek Rebus</h2>
-            <p style="margin:6px 0;line-height:1.7;font-size:.82rem">
-              Kuah gurih, hangat, dan jadi menu yang paling sering dipesan pelanggan.
-              Cocok untuk makan siang, malam, maupun saat cuaca dingin.
-            </p>
+            <p style="margin:6px 0;line-height:1.7;font-size:.82rem">Kuah gurih, hangat, dan jadi menu yang paling sering dipesan pelanggan. Cocok untuk makan siang, malam, maupun saat cuaca dingin.</p>
             <div class="big-price">13K</div>
           </div>
           <div>
@@ -301,6 +272,7 @@ body {
         </div>
       </div>
 
+      <!-- MENU FAVORIT -->
       <div class="glass">
         <h2 class="section-title">🔥 Menu Favorit Pelanggan</h2>
         <div class="grid">
@@ -320,8 +292,6 @@ body {
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/rujak-buah-lotis.webp" alt="Lotis Buah" class="can-zoom">
             <div class="card-body"><h3>Lotis Buah</h3><div class="price">12K</div></div>
           </div>
-
-
           <div class="card">
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-ayam.webp" alt="Mie Ayam" class="can-zoom">
             <div class="card-body"><h3>Mie Ayam - Bakso</h3><div class="price">12K - 15K</div></div>
@@ -329,7 +299,7 @@ body {
         </div>
       </div>
 
-
+      <!-- MINUMAN -->
       <div class="glass">
         <h2 class="section-title">🥤 Minuman Segar</h2>
         <div class="grid">
@@ -350,6 +320,10 @@ body {
             <div class="card-body"><h3>Es Jeruk</h3><div class="price">5K</div></div>
           </div>
           <div class="card">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-lemon-tea.webp" alt="Es Lemon Tea" class="can-zoom">
+            <div class="card-body"><h3>Es Lemon Tea</h3><div class="price">6K</div></div>
+          </div>
+          <div class="card">
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-kopi-gula-aren.webp" alt="Es Kopi Gula Aren" class="can-zoom">
             <div class="card-body"><h3>Es Kopi Gula Aren</h3><div class="price">10K</div></div>
           </div>
@@ -364,6 +338,7 @@ body {
         </div>
       </div>
 
+      <!-- CEMILAN -->
       <div class="glass">
         <h2 class="section-title">🍢 Cemilan Favorit</h2>
         <div class="grid">
@@ -386,6 +361,7 @@ body {
         </div>
       </div>
 
+      <!-- KUE -->
       <div class="glass">
         <h2 class="section-title">🍰 Aneka Kue</h2>
         <p style="text-align:center;margin-bottom:12px;font-size:.82rem">Cocok untuk acara keluarga, rapat, arisan dan pesanan harian.</p>
@@ -409,6 +385,7 @@ body {
         </div>
       </div>
 
+      <!-- CATERING -->
       <div class="glass catering-box">
         <h2>🍱 Menerima Pesanan Catering, Nasi Kotak &amp; Aneka Kue</h2>
         <p>Siap melayani kebutuhan acara keluarga, rapat, arisan dan berbagai kegiatan lainnya.</p>
@@ -420,7 +397,6 @@ body {
       </div>
 
       <div style="height:20px"></div>
-
     </div>
   </div>
 </div>
@@ -428,37 +404,37 @@ body {
 <a class="wa" href="https://wa.me/6282377160602">💬 WA Pesan</a>
 
 <script>
-  const FRAME_TOP    = 115;  
-  const FRAME_BOTTOM = 180;  
-  const FRAME_SIDE   = 16;   
+  // ===== TANGGAL REAL-TIME =====
+  const HARI  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  function tampilkanTanggal() {
+    const now  = new Date();
+    const teks = HARI[now.getDay()] + ', ' + now.getDate() + ' ' + BULAN[now.getMonth()] + ' ' + now.getFullYear();
+    document.getElementById('tanggalSpesial').textContent = teks;
+  }
+  tampilkanTanggal();
 
+  // ===== PADDING FRAME =====
   function applyPadding() {
     const sa = document.getElementById('scrollArea');
-    sa.style.paddingTop    = FRAME_TOP + 'px';
-    sa.style.paddingBottom = FRAME_BOTTOM + 'px';
-    sa.style.paddingLeft   = FRAME_SIDE + 'px';
-    sa.style.paddingRight  = FRAME_SIDE + 'px';
+    sa.style.paddingTop    = '115px';
+    sa.style.paddingBottom = '180px';
+    sa.style.paddingLeft   = '16px';
+    sa.style.paddingRight  = '16px';
   }
-
   window.addEventListener('load', applyPadding);
   window.addEventListener('resize', applyPadding);
 
-  // 📌 JAVASCRIPT OTOMATIS: Fungsi Klik Perbesar & Perkecil Gambar
+  // ===== LIGHTBOX =====
   const overlay = document.getElementById('zoomOverlay');
   const zoomImg = document.getElementById('zoomImg');
-  const images  = document.querySelectorAll('.can-zoom, .card img');
-
-  images.forEach(img => {
+  document.querySelectorAll('.can-zoom, .card img, .spesial-card img').forEach(img => {
     img.addEventListener('click', function() {
       zoomImg.src = this.src;
       overlay.classList.add('active');
     });
   });
-
-  overlay.addEventListener('click', function() {
-    overlay.classList.remove('active');
-  });
+  overlay.addEventListener('click', () => overlay.classList.remove('active'));
 </script>
-
 </body>
 </html>
