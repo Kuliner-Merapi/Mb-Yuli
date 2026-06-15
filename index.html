@@ -383,14 +383,6 @@ body {
         <h2 class="section-title">🥤 Minuman Segar</h2>
         <div class="grid">
           <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-green-tea-milk.webp?v=1" alt="Es Green Tea Milk" class="can-zoom">
-            <div class="card-body"><h3>Es Green Tea Milk</h3><div class="price">10K</div></div>
-          </div>
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-thai-tea.webp" alt="Es Thai Tea" class="can-zoom">
-            <div class="card-body"><h3>Es Thai Tea</h3><div class="price">10K</div></div>
-          </div>
-          <div class="card">
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-mojito-jumbo.webp" alt="Es Mojito" class="can-zoom">
             <div class="card-body"><h3>Es Mojito Varian Rasa</h3><div class="price">7K</div></div>
           </div>
@@ -401,10 +393,6 @@ body {
           <div class="card">
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-lemon-tea.webp" alt="Es Lemon Tea" class="can-zoom">
             <div class="card-body"><h3>Es Lemon Tea</h3><div class="price">6K</div></div>
-          </div>
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-kopi-gula-aren.webp" alt="Es Kopi Gula Aren" class="can-zoom">
-            <div class="card-body"><h3>Es Kopi Gula Aren</h3><div class="price">10K</div></div>
           </div>
           <div class="card">
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-teh-hijau-jumbo.webp" alt="Es Teh Hijau" class="can-zoom">
@@ -508,10 +496,8 @@ body {
 <a class="wa" href="https://wa.me/6282377160602">💬 WA Pesan</a>
 
 <script>
-  // URL WEB APP HASIL DEPLOY APPS SCRIPT ANDA SUDAH DIMASUKKAN DI SINI
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5qLDj_0Cp-fN8E01KdcHx4wrN8cH_wlXnMRuPYVGbNs8utGlWvwZzElyNH9u_AeoO/exec";
 
-  // ===== TANGGAL REAL-TIME =====
   const HARI  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
   const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
   function tampilkanTanggal() {
@@ -521,7 +507,6 @@ body {
   }
   tampilkanTanggal();
 
-  // ===== PADDING FRAME =====
   function applyPadding() {
     const sa = document.getElementById('scrollArea');
     sa.style.paddingTop    = '115px';
@@ -532,7 +517,6 @@ body {
   window.addEventListener('load', applyPadding);
   window.addEventListener('resize', applyPadding);
 
-  // ===== LIGHTBOX =====
   const overlay = document.getElementById('zoomOverlay');
   const zoomImg = document.getElementById('zoomImg');
   
@@ -544,7 +528,6 @@ body {
   });
   overlay.addEventListener('click', () => overlay.classList.remove('active'));
 
-  // ===== DROPDOWN SETUP =====
   function setupDropdown(btnId, contentId, openTxt, closeTxt) {
     const btn = document.getElementById(btnId);
     const content = document.getElementById(contentId);
@@ -556,7 +539,6 @@ body {
   setupDropdown('kueBtn', 'kueContent', '🔼 Tutup Daftar Kue', '🍰 Ingin pesan kue? Kita menyediakan aneka kue yang ada, klik disini...');
   setupDropdown('cemilanBtn', 'cemilanContent', '🔼 Tutup Cemilan Favorit', '🍢 Cari cemilan santai? Kita ada Cemilan Favorit, klik disini...');
 
-  // ===== GOOGLE SHEETS LIVE COMMENT CODES =====
   const btnSubmit = document.getElementById('submitComment');
   const inputName = document.getElementById('commentName');
   const inputPhone = document.getElementById('commentPhone');
@@ -566,7 +548,6 @@ body {
 
   const kataKasar = ['anjing', 'babi', 'monyet', 'bangsat', 'tolol', 'goblok', 'jelek', 'najis', 'kontol', 'memek', 'gila', 'bego', 'asu'];
 
-  // Fungsi Mengambil Data Komentar Dari Google Sheets
   function loadCommentsFromSheets() {
     fetch(SCRIPT_URL)
       .then(response => response.json())
@@ -576,8 +557,6 @@ body {
           listComment.innerHTML = '<div class="loading-text">Belum ada ulasan. Jadilah yang pertama memberikan ulasan!</div>';
           return;
         }
-        
-        // Render data dari Sheets
         data.forEach(c => {
           const item = document.createElement('div');
           item.className = 'comment-item';
@@ -596,7 +575,6 @@ body {
       });
   }
 
-  // Fungsi Kirim Data Komentar ke Google Sheets
   btnSubmit.addEventListener('click', function() {
     const name = inputName.value.trim();
     const phone = inputPhone.value.trim();
@@ -646,7 +624,7 @@ body {
         inputPhone.value = '';
         inputText.value = '';
         alert('Terima kasih! Ulasan Anda berhasil diterbitkan secara publik.');
-        loadCommentsFromSheets(); // Reload ulasan terbaru
+        loadCommentsFromSheets();
       } else {
         alert('Gagal mengirim ulasan: ' + res.message);
       }
@@ -659,7 +637,6 @@ body {
     });
   });
 
-  // Load komentar pertama kali saat web dibuka
   loadCommentsFromSheets();
 </script>
 </body>
