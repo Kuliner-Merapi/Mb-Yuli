@@ -7,7 +7,7 @@
 
 <link rel="icon" type="image/png" sizes="192x192" href="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/icon192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/icon512.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/icon180.png">
+<link class="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/icon180.png">
 <meta name="theme-color" content="#9b2d00">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -160,6 +160,81 @@ body {
   margin-top: 5px;
 }
 
+/* ===== ACCORDION STYLE ===== */
+.dropdown-trigger-btn {
+  background: #fff;
+  border: 2px solid #8d2f00;
+  color: #8d2f00;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: block;
+}
+.dropdown-trigger-btn:hover {
+  background: #8d2f00;
+  color: #fff;
+}
+.dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, margin-top 0.3s ease;
+}
+.dropdown-content.open {
+  max-height: 1000px;
+  margin-top: 14px;
+}
+
+/* ===== COMMENT BOX SYSTEM ===== */
+.comment-box input, .comment-box textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+.comment-box textarea { resize: none; height: 70px; }
+.comment-submit {
+  background: #8d2f00;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+.comment-submit:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+.comment-list {
+  margin-top: 15px;
+  max-height: 220px;
+  overflow-y: auto;
+  border-top: 1px dashed #ddd;
+  padding-top: 10px;
+}
+.comment-item {
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.comment-item h4 { font-size: 0.8rem; color: #8d2f00; margin-bottom: 2px; }
+.comment-item p { font-size: 0.78rem; line-height: 1.4; color: #555; }
+.comment-item .comment-time { font-size: 0.65rem; color: #aaa; text-align: right; margin-top: 2px; }
+.loading-text { text-align: center; font-size: 0.8rem; color: #888; padding: 10px; }
+
 /* ===== TUTORIAL SIMPAN SCREEN ===== */
 .tutorial-box { background: rgba(255,255,255,0.92); border: 1.5px dashed #ff9800; }
 .tutorial-steps { text-align: left; margin-top: 10px; font-size: 0.82rem; line-height: 1.6; }
@@ -263,6 +338,7 @@ body {
           </a>
         </div>
       </div>
+
       <div class="glass">
         <div class="feature">
           <div>
@@ -316,7 +392,7 @@ body {
           </div>
           <div class="card">
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-mojito-jumbo.webp" alt="Es Mojito" class="can-zoom">
-            <div class="card-body"><h3>Es Mojito Varian Rasa</h3><div class="price">6K</div></div>
+            <div class="card-body"><h3>Es Mojito Varian Rasa</h3><div class="price">7K</div></div>
           </div>
           <div class="card">
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-jeruk.webp" alt="Es Jeruk" class="can-zoom">
@@ -342,47 +418,65 @@ body {
       </div>
 
       <div class="glass">
-        <h2 class="section-title">🍢 Cemilan Favorit</h2>
-        <div class="grid">
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/cilor.webp" alt="Cilor" class="can-zoom">
-            <div class="card-body"><h3>Cilor</h3><div class="price">10K</div></div>
-          </div>
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/sempol-ayam.webp" alt="Sempol Ayam" class="can-zoom">
-            <div class="card-body"><h3>Sempol Ayam</h3><div class="price">12K</div></div>
-          </div>
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kentang-goreng.webp" alt="Kentang Goreng" class="can-zoom">
-            <div class="card-body"><h3>Kentang Goreng</h3><div class="price">12K</div></div>
-          </div>
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/cireng-original.webp" alt="Cireng Original" class="can-zoom">
-            <div class="card-body"><h3>Cireng Original</h3><div class="price">12K</div></div>
+        <div class="dropdown-trigger-btn" id="cemilanBtn">🍢 Cari cemilan santai? Kita ada Cemilan Favorit, klik disini...</div>
+        <div class="dropdown-content" id="cemilanContent">
+          <div class="grid" style="margin-top:10px;">
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/cilor.webp" alt="Cilor" class="can-zoom">
+              <div class="card-body"><h3>Cilor</h3><div class="price">10K</div></div>
+            </div>
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/sempol-ayam.webp" alt="Sempol Ayam" class="can-zoom">
+              <div class="card-body"><h3>Sempol Ayam</h3><div class="price">12K</div></div>
+            </div>
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kentang-goreng.webp" alt="Kentang Goreng" class="can-zoom">
+              <div class="card-body"><h3>Kentang Goreng</h3><div class="price">12K</div></div>
+            </div>
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/cireng-original.webp" alt="Cireng Original" class="can-zoom">
+              <div class="card-body"><h3>Cireng Original</h3><div class="price">12K</div></div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="glass">
-        <h2 class="section-title">🍰 Aneka Kue</h2>
-        <p style="text-align:center;margin-bottom:12px;font-size:.82rem">Cocok untuk acara keluarga, rapat, arisan dan pesanan harian.</p>
-        <div class="grid">
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-lapis.webp" alt="Kue Lapis" class="can-zoom">
-            <div class="card-body"><h3>Kue Lapis</h3><div class="price">2K / pcs</div></div>
+        <div class="dropdown-trigger-btn" id="kueBtn">🍰 Ingin pesan kue? Kita menyediakan aneka kue yang ada, klik disini...</div>
+        <div class="dropdown-content" id="kueContent">
+          <p style="text-align:center;margin-bottom:12px;font-size:.82rem">Cocok untuk acara keluarga, rapat, arisan dan pesanan harian.</p>
+          <div class="grid">
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-lapis.webp" alt="Kue Lapis" class="can-zoom">
+              <div class="card-body"><h3>Kue Lapis</h3><div class="price">2K / pcs</div></div>
+            </div>
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-risoles.webp" alt="Risoles" class="can-zoom">
+              <div class="card-body"><h3>Risoles</h3><div class="price">1.5K / pcs</div></div>
+            </div>
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-pastel.webp" alt="Pastel" class="can-zoom">
+              <div class="card-body"><h3>Pastel</h3><div class="price">2K / pcs</div></div>
+            </div>
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-putu-ayu.webp" alt="Putu Ayu" class="can-zoom">
+              <div class="card-body"><h3>Putu Ayu</h3><div class="price">1.5K / pcs</div></div>
+            </div>
           </div>
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-risoles.webp" alt="Risoles" class="can-zoom">
-            <div class="card-body"><h3>Risoles</h3><div class="price">1.5K / pcs</div></div>
-          </div>
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-pastel.webp" alt="Pastel" class="can-zoom">
-            <div class="card-body"><h3>Pastel</h3><div class="price">2K / pcs</div></div>
-          </div>
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/kue-putu-ayu.webp" alt="Putu Ayu" class="can-zoom">
-            <div class="card-body"><h3>Putu Ayu</h3><div class="price">1.5K / pcs</div></div>
-          </div>
+        </div>
+      </div>
+
+      <div class="glass comment-box">
+        <h2 class="section-title" style="margin-bottom: 4px;">💬 Ulasan &amp; Saran Pelanggan</h2>
+        <p style="text-align:center; font-size:0.75rem; color:#e65100; margin-bottom:12px;">Data nomor HP dijamin aman &amp; tidak akan ditampilkan ke publik.</p>
+        
+        <input type="text" id="commentName" placeholder="Nama Lengkap Anda..." required>
+        <input type="tel" id="commentPhone" placeholder="Nomor HP / WhatsApp Aktif..." required>
+        <textarea id="commentText" placeholder="Tulis masukan, kritik, atau saran rasa masakan kami di sini..." required></textarea>
+        <button class="comment-submit" id="submitComment">Kirim Ulasan Resmi</button>
+        
+        <div class="comment-list" id="commentList">
+          <div class="loading-text" id="loadingText">Memuat komentar pelanggan...</div>
         </div>
       </div>
 
@@ -414,6 +508,9 @@ body {
 <a class="wa" href="https://wa.me/6282377160602">💬 WA Pesan</a>
 
 <script>
+  // URL WEB APP HASIL DEPLOY APPS SCRIPT ANDA SUDAH DIMASUKKAN DI SINI
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5qLDj_0Cp-fN8E01KdcHx4wrN8cH_wlXnMRuPYVGbNs8utGlWvwZzElyNH9u_AeoO/exec";
+
   // ===== TANGGAL REAL-TIME =====
   const HARI  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
   const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
@@ -438,13 +535,132 @@ body {
   // ===== LIGHTBOX =====
   const overlay = document.getElementById('zoomOverlay');
   const zoomImg = document.getElementById('zoomImg');
-  document.querySelectorAll('.can-zoom, .card img, .spesial-card img').forEach(img => {
-    img.addEventListener('click', function() {
-      zoomImg.src = this.src;
+  
+  document.addEventListener('click', function(e) {
+    if (e.target.tagName === 'IMG' && (e.target.classList.contains('can-zoom') || e.target.closest('.card') || e.target.closest('.spesial-card'))) {
+      zoomImg.src = e.target.src;
       overlay.classList.add('active');
-    });
+    }
   });
   overlay.addEventListener('click', () => overlay.classList.remove('active'));
+
+  // ===== DROPDOWN SETUP =====
+  function setupDropdown(btnId, contentId, openTxt, closeTxt) {
+    const btn = document.getElementById(btnId);
+    const content = document.getElementById(contentId);
+    btn.addEventListener('click', function() {
+      content.classList.toggle('open');
+      btn.textContent = content.classList.contains('open') ? openTxt : closeTxt;
+    });
+  }
+  setupDropdown('kueBtn', 'kueContent', '🔼 Tutup Daftar Kue', '🍰 Ingin pesan kue? Kita menyediakan aneka kue yang ada, klik disini...');
+  setupDropdown('cemilanBtn', 'cemilanContent', '🔼 Tutup Cemilan Favorit', '🍢 Cari cemilan santai? Kita ada Cemilan Favorit, klik disini...');
+
+  // ===== GOOGLE SHEETS LIVE COMMENT CODES =====
+  const btnSubmit = document.getElementById('submitComment');
+  const inputName = document.getElementById('commentName');
+  const inputPhone = document.getElementById('commentPhone');
+  const inputText = document.getElementById('commentText');
+  const listComment = document.getElementById('commentList');
+  const loadingText = document.getElementById('loadingText');
+
+  const kataKasar = ['anjing', 'babi', 'monyet', 'bangsat', 'tolol', 'goblok', 'jelek', 'najis', 'kontol', 'memek', 'gila', 'bego', 'asu'];
+
+  // Fungsi Mengambil Data Komentar Dari Google Sheets
+  function loadCommentsFromSheets() {
+    fetch(SCRIPT_URL)
+      .then(response => response.json())
+      .then(data => {
+        listComment.innerHTML = '';
+        if (data.length === 0) {
+          listComment.innerHTML = '<div class="loading-text">Belum ada ulasan. Jadilah yang pertama memberikan ulasan!</div>';
+          return;
+        }
+        
+        // Render data dari Sheets
+        data.forEach(c => {
+          const item = document.createElement('div');
+          item.className = 'comment-item';
+          item.innerHTML = `
+            <h4>✅ ${c.nama} <span style="font-size:0.7rem; color:#4caf50; font-weight:normal;">(Pelanggan Terverifikasi)</span></h4>
+            <p>${c.komentar}</p>
+            <div class="comment-time">${c.tanggal}</div>
+          `;
+          listComment.appendChild(item);
+        });
+        listComment.scrollTop = listComment.scrollHeight;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        listComment.innerHTML = '<div class="loading-text" style="color:red;">Gagal memuat ulasan. Silakan muat ulang halaman.</div>';
+      });
+  }
+
+  // Fungsi Kirim Data Komentar ke Google Sheets
+  btnSubmit.addEventListener('click', function() {
+    const name = inputName.value.trim();
+    const phone = inputPhone.value.trim();
+    const text = inputText.value.trim();
+    
+    if (name === '' || phone === '' || text === '') {
+      alert('Mohon lengkapi semua kolom.');
+      return;
+    }
+
+    const phoneRegex = /^[0-9]{10,15}$/;
+    if (!phoneRegex.test(phone)) {
+      alert('Nomor HP/WhatsApp tidak valid! Masukkan angka saja (10-15 digit).');
+      return;
+    }
+
+    let teksLower = text.toLowerCase();
+    let mengandungKataKasar = kataKasar.some(kata => teksLower.includes(kata));
+    if (mengandungKataKasar) {
+      alert('Maaf, ulasan Anda mengandung kata yang kurang sopan. Mohon sampaikan kritik secara bijaksana.');
+      return;
+    }
+
+    const now = new Date();
+    const timeString = now.getDate() + ' ' + BULAN[now.getMonth()] + ' ' + now.getFullYear();
+
+    btnSubmit.disabled = true;
+    btnSubmit.textContent = 'Sedang Mengirim Ulasan...';
+
+    const formData = new URLSearchParams();
+    formData.append('nama', name);
+    formData.append('hp', phone);
+    formData.append('komentar', text);
+    formData.append('tanggal', timeString);
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(res => {
+      btnSubmit.disabled = false;
+      btnSubmit.textContent = 'Kirim Ulasan Resmi';
+      
+      if(res.status === 'success') {
+        inputName.value = '';
+        inputPhone.value = '';
+        inputText.value = '';
+        alert('Terima kasih! Ulasan Anda berhasil diterbitkan secara publik.');
+        loadCommentsFromSheets(); // Reload ulasan terbaru
+      } else {
+        alert('Gagal mengirim ulasan: ' + res.message);
+      }
+    })
+    .catch(error => {
+      btnSubmit.disabled = false;
+      btnSubmit.textContent = 'Kirim Ulasan Resmi';
+      console.error('Error:', error);
+      alert('Terjadi kesalahan jaringan saat mengirim ulasan.');
+    });
+  });
+
+  // Load komentar pertama kali saat web dibuka
+  loadCommentsFromSheets();
 </script>
 </body>
 </html>
