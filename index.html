@@ -75,6 +75,8 @@ body {
   text-decoration: none;
   font-weight: 700;
   font-size: .9rem;
+  border: none;
+  cursor: pointer;
 }
 .section-title {
   text-align: center;
@@ -190,6 +192,47 @@ body {
 }
 
 /* ===== COMMENT BOX SYSTEM ===== */
+.auth-container { text-align: center; padding: 10px 0; }
+.btn-google {
+  background: #fff;
+  color: #444;
+  border: 1px solid #ccc;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background 0.2s;
+}
+.btn-google:hover { background: #f5f5f5; }
+.btn-google img { width: 18px; height: 18px; }
+.user-profile-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #eee;
+}
+.user-avatar { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; }
+.user-details { text-align: left; flex-grow: 1; }
+.user-details h4 { font-size: 0.82rem; color: #3c2415; }
+.btn-logout {
+  background: none;
+  border: none;
+  color: #e53935;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
 .comment-box input, .comment-box textarea {
   width: 100%;
   padding: 10px;
@@ -199,6 +242,7 @@ body {
   font-family: inherit;
   font-size: 0.85rem;
 }
+.comment-box input:disabled { background: #f0f0f0; color: #666; cursor: not-allowed; }
 .comment-box textarea { resize: none; height: 70px; }
 .comment-submit {
   background: #8d2f00;
@@ -230,8 +274,8 @@ body {
   margin-bottom: 8px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
-.comment-item h4 { font-size: 0.8rem; color: #8d2f00; margin-bottom: 2px; }
-.comment-item p { font-size: 0.78rem; line-height: 1.4; color: #555; }
+.comment-item h4 { font-size: 0.8rem; color: #8d2f00; margin-bottom: 2px; display: flex; align-items: center; gap: 6px; }
+.comment-item p { font-size: 0.78rem; line-height: 1.4; color: #555; word-break: break-word; }
 .comment-item .comment-time { font-size: 0.65rem; color: #aaa; text-align: right; margin-top: 2px; }
 .loading-text { text-align: center; font-size: 0.8rem; color: #888; padding: 10px; }
 
@@ -312,21 +356,12 @@ body {
         </div>
         <div class="spesial-inner">
           <div class="sub-note">⚡ Stok terbatas — habis ya sudah!</div>
-          <div class="spesial-grid">
-            <div class="spesial-card">
-              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-ayam-bakar.webp" alt="Ayam Goreng/Bakar" class="can-zoom">
+          <div style="display:flex;justify-content:center;">
+            <div class="spesial-card" style="max-width:180px;width:100%;">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-ayam-penyet.webp" alt="Nasi Ayam Geprek" class="can-zoom">
               <div class="spesial-card-body">
-                <h3>Nasi Ayam Goreng / Bakar</h3>
-                <div class="spesial-price">22K</div>
-                <div class="spesial-note">+ lalapan &amp; sambal</div>
-                <span class="stok-badge">Stok Terbatas!</span>
-              </div>
-            </div>
-            <div class="spesial-card">
-              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-pecel-lele.webp" alt="Pecel Lele" class="can-zoom">
-              <div class="spesial-card-body">
-                <h3>Nasi Pecel Lele</h3>
-                <div class="spesial-price">17K</div>
+                <h3>Nasi Ayam Geprek</h3>
+                <div class="spesial-price">20K</div>
                 <div class="spesial-note">+ lalapan &amp; sambal</div>
                 <span class="stok-badge">Stok Terbatas!</span>
               </div>
@@ -349,6 +384,24 @@ body {
           </div>
           <div>
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus" class="can-zoom">
+          </div>
+        </div>
+      </div>
+
+      <div class="glass">
+        <h2 class="section-title">🍱 Menu Makan Lezat</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-ayam-bakar.webp" alt="Nasi Ayam Bakar" class="can-zoom">
+            <div class="card-body"><h3>Nasi Ayam Bakar</h3><div class="price">20K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-ayam-goreng.webp" alt="Nasi Ayam Goreng" class="can-zoom">
+            <div class="card-body"><h3>Nasi Ayam Goreng</h3><div class="price">20K</div></div>
+          </div>
+          <div class="card">
+            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-pecel-lele.webp" alt="Nasi Pecel Lele" class="can-zoom">
+            <div class="card-body"><h3>Nasi Pecel Lele</h3><div class="price">20K</div></div>
           </div>
         </div>
       </div>
@@ -456,12 +509,30 @@ body {
 
       <div class="glass comment-box">
         <h2 class="section-title" style="margin-bottom: 4px;">💬 Ulasan &amp; Saran Pelanggan</h2>
-        <p style="text-align:center; font-size:0.75rem; color:#e65100; margin-bottom:12px;">Data nomor HP dijamin aman &amp; tidak akan ditampilkan ke publik.</p>
+        <p style="text-align:center; font-size:0.75rem; color:#e65100; margin-bottom:12px;">Wajib Login Google. Data nomor HP &amp; Email dijamin aman &amp; tidak publik.</p>
         
-        <input type="text" id="commentName" placeholder="Nama Lengkap Anda..." required>
-        <input type="tel" id="commentPhone" placeholder="Nomor HP / WhatsApp Aktif..." required>
-        <textarea id="commentText" placeholder="Tulis masukan, kritik, atau saran rasa masakan kami di sini..." required></textarea>
-        <button class="comment-submit" id="submitComment">Kirim Ulasan Resmi</button>
+        <!-- ELEMENT PEMBATAS LOGIN -->
+        <div id="authBlock" class="auth-container">
+          <button class="btn-google" id="btnGoogleLogin">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo">
+            🔑 Login Akun Google Untuk Memberi Ulasan
+          </button>
+        </div>
+
+        <!-- FORM ULASAN YANG AKAN TERBUKA SETELAH LOGIN -->
+        <div id="formBlock" style="display: none;">
+          <div class="user-profile-info">
+            <img src="" id="userPhoto" class="user-avatar" alt="Avatar">
+            <div class="user-details">
+              <h4 id="userDisplayName">Nama User</h4>
+              <button class="btn-logout" id="btnGoogleLogout">🚪 Keluar Akun</button>
+            </div>
+          </div>
+          <input type="text" id="commentName" placeholder="Nama Lengkap Anda..." disabled required>
+          <input type="tel" id="commentPhone" placeholder="Nomor HP / WhatsApp Aktif..." required>
+          <textarea id="commentText" placeholder="Tulis masukan, kritik, atau saran rasa masakan kami di sini..." required></textarea>
+          <button class="comment-submit" id="submitComment">Kirim Ulasan Resmi</button>
+        </div>
         
         <div class="comment-list" id="commentList">
           <div class="loading-text" id="loadingText">Memuat komentar pelanggan...</div>
@@ -495,11 +566,33 @@ body {
 
 <a class="wa" href="https://wa.me/6282377160602">💬 WA Pesan</a>
 
+<!-- LOAD FIREBASE UTILS BERBASIS BROWSER COMPATIBLE -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
 <script>
+  // Konfigurasi milik Projek Firebase Kuliner-Mbak-Yulli
+  const firebaseConfig = {
+    apiKey: "AIzaSyCCd3_gC1miypn6KJAutVVZSPrLMy582WQ",
+    authDomain: "kuliner-mbak-yulli.firebaseapp.com",
+    projectId: "kuliner-mbak-yulli",
+    storageBucket: "kuliner-mbak-yulli.firebasestorage.app",
+    messagingSenderId: "885694065837",
+    appId: "1:885694065837:web:fc8a5e880bb3760f2b2a24",
+    measurementId: "G-B18CE019W2"
+  };
+
+  // Inisialisasi Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+  // URL Web Apps Google Sheets milikmu (Versi Terbaru)
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5qLDj_0Cp-fN8E01KdcHx4wrN8cH_wlXnMRuPYVGbNs8utGlWvwZzElyNH9u_AeoO/exec";
 
   const HARI  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
   const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  
   function tampilkanTanggal() {
     const now  = new Date();
     const teks = HARI[now.getDay()] + ', ' + now.getDate() + ' ' + BULAN[now.getMonth()] + ' ' + now.getFullYear();
@@ -546,8 +639,68 @@ body {
   const listComment = document.getElementById('commentList');
   const loadingText = document.getElementById('loadingText');
 
-  const kataKasar = ['anjing', 'babi', 'monyet', 'bangsat', 'tolol', 'goblok', 'jelek', 'najis', 'kontol', 'memek', 'gila', 'bego', 'asu'];
+  const authBlock = document.getElementById('authBlock');
+  const formBlock = document.getElementById('formBlock');
+  const btnGoogleLogin = document.getElementById('btnGoogleLogin');
+  const btnGoogleLogout = document.getElementById('btnGoogleLogout');
+  const userPhoto = document.getElementById('userPhoto');
+  const userDisplayName = document.getElementById('userDisplayName');
 
+  // ============================================
+  // DATABASE FILTER KATA KASAR & NEGATIF (100+ KATA & TYPO)
+  // ============================================
+  const kataKasar = [
+    'ancok','anjrit','anjing','asu','babi','bangsat','bedebah','bloon','bodoh','brengsek','copet','degil','dongo','goblok','jancuk','kontol','memek','monyet','pante','peler','sundal','tai','tolol','agama','kafir','aseng','cina','dayak','islam','kristen','tionghoa','pribumi','bego','cacat','gila','idiot','jelek','lonte','mati','miskin','pelacur','sinting','stress','colmek','desah','hot','mesum','ngentot','paha','sange','sex','telanjang','tetek','alat kotor','bacin','bangkai','bau','lendir','semut','bulu','cacing','kecoa','lalat','laler','masam','mual','muntah','ngeri','pait','basi','racun','rambut','rongsok','sapu','tikus','ulat','busuk','jijik','hutang','berulat','masem','alot','anyep','asin banget','hambar','gosong','mentah','keras','minyak semua','benyek','pelit','sikit','sedikit','zonk','jenes','hina','singgat','uler',
+    // Varian manipulasi tulisan (Typo / Leetspeak Bypass)
+    'anj1ng','4njing','4nj1ng','4ndj1ng','60bl0k','g0bl0k','g0bl0q','k0nt0l','k0nt01','m3m3k','b4b1','b4bi','p3l3r','t4i','th4i','t_a_i','b3g0','id10t','scx','s3x','ng3nt0t','v4g1n4','p3l1t','h4mb4r','g0s0ng','m3nt4h','bas1','b4s1'
+  ];
+
+  // Normalisasi teks untuk deteksi manipulasi karakter unik (bypass filter)
+  function bersihkanTeks(teks) {
+    return teks.toLowerCase()
+      .replace(/[.\-_,?!@#$%\^&*()]/g, '') // Hapus simbol penyamaran kata (m.e.m.e.k atau a_n_j_i_n_g)
+      .replace(/\s+/g, ''); // Hapus semua spasi sementara untuk cek kata menyatu
+  }
+
+  // ============================================
+  // MANAJEMEN SISTEM AUTHENTICATION GOOGLE
+  // ============================================
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      // Jika user sudah masuk
+      authBlock.style.display = 'none';
+      formBlock.style.display = 'block';
+      userPhoto.src = user.photoURL || 'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg';
+      userDisplayName.textContent = user.displayName;
+      inputName.value = user.displayName; // Isi otomatis nama asli akun Google
+    } else {
+      // Jika belum masuk / logout
+      authBlock.style.display = 'block';
+      formBlock.style.display = 'none';
+      inputName.value = '';
+      userPhoto.src = '';
+      userDisplayName.textContent = '';
+    }
+  });
+
+  // Aksi Tombol Login
+  btnGoogleLogin.addEventListener('click', () => {
+    auth.signInWithPopup(provider).catch((error) => {
+      console.error("Gagal Login:", error);
+      alert("Gagal terhubung dengan akun Google. Silakan coba kembali.");
+    });
+  });
+
+  // Aksi Tombol Logout
+  btnGoogleLogout.addEventListener('click', () => {
+    auth.signOut().then(() => {
+      alert("Anda telah berhasil keluar akun.");
+    });
+  });
+
+  // ============================================
+  // LOAD & TAMPILKAN KOMENTAR DARI GOOGLE SHEETS
+  // ============================================
   function loadCommentsFromSheets() {
     fetch(SCRIPT_URL)
       .then(response => response.json())
@@ -575,13 +728,22 @@ body {
       });
   }
 
+  // ============================================
+  // VALIDASI FILTER & KIRIM DATA ULASAN
+  // ============================================
   btnSubmit.addEventListener('click', function() {
-    const name = inputName.value.trim();
+    const user = auth.currentUser;
+    if (!user) {
+      alert('Silakan login menggunakan akun Google Anda terlebih dahulu.');
+      return;
+    }
+
+    const name = user.displayName; // Memastikan data nama ditarik murni dari data Google login asli
     const phone = inputPhone.value.trim();
     const text = inputText.value.trim();
     
-    if (name === '' || phone === '' || text === '') {
-      alert('Mohon lengkapi semua kolom.');
+    if (phone === '' || text === '') {
+      alert('Mohon lengkapi semua kolom masukan.');
       return;
     }
 
@@ -591,10 +753,16 @@ body {
       return;
     }
 
-    let teksLower = text.toLowerCase();
-    let mengandungKataKasar = kataKasar.some(kata => teksLower.includes(kata));
-    if (mengandungKataKasar) {
-      alert('Maaf, ulasan Anda mengandung kata yang kurang sopan. Mohon sampaikan kritik secara bijaksana.');
+    // Algoritma Filter Kata Kasar & Sentimen Negatif Dapur
+    let teksDiperiksa = text.toLowerCase();
+    let teksSangatBersih = bersihkanTeks(text);
+
+    let mengandungKataTerlarang = kataKasar.some(kata => {
+      return teksDiperiksa.includes(kata) || teksSangatBersih.includes(kata);
+    });
+
+    if (mengandungKataTerlarang) {
+      alert('Maaf, ulasan Anda mengandung kata-kata yang kurang sopan, ujaran kebencian, atau penilaian subjektif merusak. Mohon berikan ulasan resmi dengan kalimat yang bijaksana.');
       return;
     }
 
@@ -609,6 +777,7 @@ body {
     formData.append('hp', phone);
     formData.append('komentar', text);
     formData.append('tanggal', timeString);
+    formData.append('email', user.email); // <--- KODE BARU TERPASANG: Mengirim email asli Google ke Sheets
 
     fetch(SCRIPT_URL, {
       method: 'POST',
@@ -620,10 +789,9 @@ body {
       btnSubmit.textContent = 'Kirim Ulasan Resmi';
       
       if(res.status === 'success') {
-        inputName.value = '';
         inputPhone.value = '';
         inputText.value = '';
-        alert('Terima kasih! Ulasan Anda berhasil diterbitkan secara publik.');
+        alert('Terima kasih! Ulasan resmi Anda berhasil terbit secara publik.');
         loadCommentsFromSheets();
       } else {
         alert('Gagal mengirim ulasan: ' + res.message);
