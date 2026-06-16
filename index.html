@@ -507,17 +507,21 @@ body {
         </div>
       </div>
 
+      <!-- TEMPAT SISTEM KOMENTAR & COUNTER YANG SUDAH DIURUTKAN -->
       <div class="glass comment-box">
         <h2 class="section-title" style="margin-bottom: 4px;">💬 Ulasan &amp; Saran Pelanggan</h2>
         <p style="text-align:center; font-size:0.75rem; color:#e65100; margin-bottom:12px;">Wajib Login Google. Data nomor HP &amp; Email dijamin aman &amp; tidak publik.</p>
         
         <!-- ELEMENT PEMBATAS LOGIN -->
         <div id="authBlock" class="auth-container">
-          <button class="btn-google" id="btnGoogleLogin">
+          <button class="btn-google" id="btnGoogleLogin" style="margin-bottom: 12px;">
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo">
             🔑 Login Akun Google Untuk Memberi Ulasan
           </button>
         </div>
+
+        <!-- BARU: Elemen Counter Jumlah Ulasan (Ditaruh tepat di bawah Tombol Login) -->
+        <div id="commentCounter" style="text-align:center; font-size:0.85rem; font-weight:600; color:#8d2f00; margin-bottom:15px; background: #fff; padding: 6px; border-radius: 8px; border: 1px dashed #ffcc80;">📊 Total Ulasan: Memuat...</div>
 
         <!-- FORM ULASAN YANG AKAN TERBUKA SETELAH LOGIN -->
         <div id="formBlock" style="display: none;">
@@ -534,6 +538,7 @@ body {
           <button class="comment-submit" id="submitComment">Kirim Ulasan Resmi</button>
         </div>
         
+        <!-- KOLOM TEMPAT MENAMPILKAN DAFTAR KOMENTAR -->
         <div class="comment-list" id="commentList">
           <div class="loading-text" id="loadingText">Memuat komentar pelanggan...</div>
         </div>
@@ -651,15 +656,13 @@ body {
   // ============================================
   const kataKasar = [
     'ancok','anjrit','anjing','asu','babi','bangsat','bedebah','bloon','bodoh','brengsek','copet','degil','dongo','goblok','jancuk','kontol','memek','monyet','pante','peler','sundal','tai','tolol','agama','kafir','aseng','cina','dayak','islam','kristen','tionghoa','pribumi','bego','cacat','gila','idiot','jelek','lonte','mati','miskin','pelacur','sinting','stress','colmek','desah','hot','mesum','ngentot','paha','sange','sex','telanjang','tetek','alat kotor','bacin','bangkai','bau','lendir','semut','bulu','cacing','kecoa','lalat','laler','masam','mual','muntah','ngeri','pait','basi','racun','rambut','rongsok','sapu','tikus','ulat','busuk','jijik','hutang','berulat','masem','alot','anyep','asin banget','hambar','gosong','mentah','keras','minyak semua','benyek','pelit','sikit','sedikit','zonk','jenes','hina','singgat','uler',
-    // Varian manipulasi tulisan (Typo / Leetspeak Bypass)
     'anj1ng','4njing','4nj1ng','4ndj1ng','60bl0k','g0bl0k','g0bl0q','k0nt0l','k0nt01','m3m3k','b4b1','b4bi','p3l3r','t4i','th4i','t_a_i','b3g0','id10t','scx','s3x','ng3nt0t','v4g1n4','p3l1t','h4mb4r','g0s0ng','m3nt4h','bas1','b4s1'
   ];
 
-  // Normalisasi teks untuk deteksi manipulasi karakter unik (bypass filter)
   function bersihkanTeks(teks) {
     return teks.toLowerCase()
-      .replace(/[.\-_,?!@#$%\^&*()]/g, '') // Hapus simbol penyamaran kata (m.e.m.e.k atau a_n_j_i_n_g)
-      .replace(/\s+/g, ''); // Hapus semua spasi sementara untuk cek kata menyatu
+      .replace(/[.\-_,?!@#$%\^&*()]/g, '') 
+      .replace(/\s+/g, ''); 
   }
 
   // ============================================
@@ -667,14 +670,12 @@ body {
   // ============================================
   auth.onAuthStateChanged((user) => {
     if (user) {
-      // Jika user sudah masuk
       authBlock.style.display = 'none';
       formBlock.style.display = 'block';
       userPhoto.src = user.photoURL || 'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg';
       userDisplayName.textContent = user.displayName;
-      inputName.value = user.displayName; // Isi otomatis nama asli akun Google
+      inputName.value = user.displayName; 
     } else {
-      // Jika belum masuk / logout
       authBlock.style.display = 'block';
       formBlock.style.display = 'none';
       inputName.value = '';
@@ -683,7 +684,6 @@ body {
     }
   });
 
-  // Aksi Tombol Login
   btnGoogleLogin.addEventListener('click', () => {
     auth.signInWithPopup(provider).catch((error) => {
       console.error("Gagal Login:", error);
@@ -691,7 +691,6 @@ body {
     });
   });
 
-  // Aksi Tombol Logout
   btnGoogleLogout.addEventListener('click', () => {
     auth.signOut().then(() => {
       alert("Anda telah berhasil keluar akun.");
@@ -699,13 +698,23 @@ body {
   });
 
   // ============================================
-  // LOAD & TAMPILKAN KOMENTAR DARI GOOGLE SHEETS
+  // LOAD & TAMPILKAN KOMENTAR + COUNTER OTOMATIS
   // ============================================
   function loadCommentsFromSheets() {
+    const counterEl = document.getElementById('commentCounter');
+    
     fetch(SCRIPT_URL)
       .then(response => response.json())
       .then(data => {
         listComment.innerHTML = '';
+        
+        // UPDATE JUMLAH COUNTER ULASAN SECARA REAL-TIME
+        if (data && data.length !== undefined) {
+          counterEl.innerHTML = `📊 Total Ulasan: <span style="color:#e65100; font-weight:800; font-size: 0.95rem;">${data.length}</span> Pelanggan`;
+        } else {
+          counterEl.innerHTML = `📊 Total Ulasan: <span style="color:#e65100; font-weight:800;">0</span> Pelanggan`;
+        }
+
         if (data.length === 0) {
           listComment.innerHTML = '<div class="loading-text">Belum ada ulasan. Jadilah yang pertama memberikan ulasan!</div>';
           return;
@@ -724,6 +733,7 @@ body {
       })
       .catch(error => {
         console.error('Error:', error);
+        counterEl.innerHTML = `📊 Total Ulasan: Gagal memuat`;
         listComment.innerHTML = '<div class="loading-text" style="color:red;">Gagal memuat ulasan. Silakan muat ulang halaman.</div>';
       });
   }
@@ -738,7 +748,7 @@ body {
       return;
     }
 
-    const name = user.displayName; // Memastikan data nama ditarik murni dari data Google login asli
+    const name = user.displayName; 
     const phone = inputPhone.value.trim();
     const text = inputText.value.trim();
     
@@ -753,7 +763,6 @@ body {
       return;
     }
 
-    // Algoritma Filter Kata Kasar & Sentimen Negatif Dapur
     let teksDiperiksa = text.toLowerCase();
     let teksSangatBersih = bersihkanTeks(text);
 
@@ -777,7 +786,7 @@ body {
     formData.append('hp', phone);
     formData.append('komentar', text);
     formData.append('tanggal', timeString);
-    formData.append('email', user.email); // <--- KODE BARU TERPASANG: Mengirim email asli Google ke Sheets
+    formData.append('email', user.email); 
 
     fetch(SCRIPT_URL, {
       method: 'POST',
