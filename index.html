@@ -256,27 +256,47 @@ body {
   display: block;
   width: 100%;
 }
-.comment-submit:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
+.comment-submit:disabled { background: #ccc; cursor: not-allowed; }
 .comment-list {
   margin-top: 15px;
-  max-height: 220px;
+  max-height: 280px;
   overflow-y: auto;
   border-top: 1px dashed #ddd;
   padding-top: 10px;
 }
 .comment-item {
   background: #fff;
-  padding: 8px 12px;
+  padding: 10px 12px;
   border-radius: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
-.comment-item h4 { font-size: 0.8rem; color: #8d2f00; margin-bottom: 2px; display: flex; align-items: center; gap: 6px; }
+.comment-item h4 { font-size: 0.8rem; color: #8d2f00; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
 .comment-item p { font-size: 0.78rem; line-height: 1.4; color: #555; word-break: break-word; }
-.comment-item .comment-time { font-size: 0.65rem; color: #aaa; text-align: right; margin-top: 2px; }
+.comment-item .comment-time { font-size: 0.65rem; color: #aaa; text-align: right; margin-top: 4px; }
+
+/* ===== STYLE BARU: KOTAK BALASAN OWNER ===== */
+.owner-reply-box {
+  background: #fff3e0;
+  border-left: 3px solid #ff9800;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-top: 6px;
+  font-size: 0.75rem;
+}
+.owner-reply-box b { color: #e65100; }
+.btn-admin-reply {
+  background: #e65100;
+  color: white;
+  border: none;
+  padding: 3px 8px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
 .loading-text { text-align: center; font-size: 0.8rem; color: #888; padding: 10px; }
 
 /* ===== TUTORIAL SIMPAN SCREEN ===== */
@@ -520,10 +540,10 @@ body {
           </button>
         </div>
 
-        <!-- BARU: Elemen Counter Jumlah Ulasan (Ditaruh tepat di bawah Tombol Login) -->
+        <!-- Elemen Counter Jumlah Ulasan -->
         <div id="commentCounter" style="text-align:center; font-size:0.85rem; font-weight:600; color:#8d2f00; margin-bottom:15px; background: #fff; padding: 6px; border-radius: 8px; border: 1px dashed #ffcc80;">📊 Total Ulasan: Memuat...</div>
 
-        <!-- FORM ULASAN YANG AKAN TERBUKA SETELAH LOGIN -->
+        <!-- FORM ULASAN / ACTION ADMIN -->
         <div id="formBlock" style="display: none;">
           <div class="user-profile-info">
             <img src="" id="userPhoto" class="user-avatar" alt="Avatar">
@@ -532,10 +552,24 @@ body {
               <button class="btn-logout" id="btnGoogleLogout">🚪 Keluar Akun</button>
             </div>
           </div>
-          <input type="text" id="commentName" placeholder="Nama Lengkap Anda..." disabled required>
-          <input type="tel" id="commentPhone" placeholder="Nomor HP / WhatsApp Aktif..." required>
-          <textarea id="commentText" placeholder="Tulis masukan, kritik, atau saran rasa masakan kami di sini..." required></textarea>
-          <button class="comment-submit" id="submitComment">Kirim Ulasan Resmi</button>
+
+          <!-- FORM REGULER UNTUK PELANGGAN BIASA -->
+          <div id="customerFormArea">
+            <input type="text" id="commentName" placeholder="Nama Lengkap Anda..." disabled required>
+            <input type="tel" id="commentPhone" placeholder="Nomor HP / WhatsApp Aktif..." required>
+            <textarea id="commentText" placeholder="Tulis masukan, kritik, atau saran rasa masakan kami di sini..." required></textarea>
+            <button class="comment-submit" id="submitComment">Kirim Ulasan Resmi</button>
+          </div>
+
+          <!-- FORM RAHASIA KHUSUS ADMIN JIKA MAU MEMBALAS -->
+          <div id="adminReplyArea" style="display:none; background:#fff3e0; padding:10px; border-radius:8px; border:1px solid #ff9800; margin-bottom:10px;">
+            <p style="font-size:0.78rem; font-weight:700; color:#e65100; margin-bottom:4px;">✍️ Membalas Ulasan: <span id="replyTargetName" style="color:#333;">-</span></p>
+            <textarea id="adminReplyText" placeholder="Tulis balasan pemilik di sini..." required></textarea>
+            <div style="display:flex; gap:8px;">
+              <button class="comment-submit" id="submitAdminReply" style="background:#e65100;">Kirim Balasan</button>
+              <button id="cancelAdminReply" style="background:#ccc; border:none; border-radius:20px; font-size:0.8rem; padding:0 12px; cursor:pointer;">Batal</button>
+            </div>
+          </div>
         </div>
         
         <!-- KOLOM TEMPAT MENAMPILKAN DAFTAR KOMENTAR -->
@@ -576,7 +610,7 @@ body {
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
 <script>
-  // Konfigurasi milik Projek Firebase Kuliner-Mbak-Yulli
+  // Konfigurasi Projek Firebase Kuliner-Mbak-Yulli
   const firebaseConfig = {
     apiKey: "AIzaSyCCd3_gC1miypn6KJAutVVZSPrLMy582WQ",
     authDomain: "kuliner-mbak-yulli.firebaseapp.com",
@@ -592,8 +626,14 @@ body {
   const auth = firebase.auth();
   const provider = new firebase.auth.GoogleAuthProvider();
 
-  // URL Web Apps Google Sheets milikmu (Versi Terbaru)
+  // URL Web Apps Google Sheets
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5qLDj_0Cp-fN8E01KdcHx4wrN8cH_wlXnMRuPYVGbNs8utGlWvwZzElyNH9u_AeoO/exec";
+
+  // EMAIL RESMI ADMIN MBAK YULI
+  const EMAIL_ADMIN = "yulimakmur2009@gmail.com"; 
+
+  let dataKomentarGlobal = []; 
+  let activeReplyRowId = null;  
 
   const HARI  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
   const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
@@ -642,8 +682,7 @@ body {
   const inputPhone = document.getElementById('commentPhone');
   const inputText = document.getElementById('commentText');
   const listComment = document.getElementById('commentList');
-  const loadingText = document.getElementById('loadingText');
-
+  
   const authBlock = document.getElementById('authBlock');
   const formBlock = document.getElementById('formBlock');
   const btnGoogleLogin = document.getElementById('btnGoogleLogin');
@@ -651,23 +690,23 @@ body {
   const userPhoto = document.getElementById('userPhoto');
   const userDisplayName = document.getElementById('userDisplayName');
 
-  // ============================================
-  // DATABASE FILTER KATA KASAR & NEGATIF (100+ KATA & TYPO)
-  // ============================================
+  const customerFormArea = document.getElementById('customerFormArea');
+  const adminReplyArea = document.getElementById('adminReplyArea');
+  const replyTargetName = document.getElementById('replyTargetName');
+  const adminReplyText = document.getElementById('adminReplyText');
+  const btnSubmitAdminReply = document.getElementById('submitAdminReply');
+  const btnCancelAdminReply = document.getElementById('cancelAdminReply');
+
   const kataKasar = [
     'ancok','anjrit','anjing','asu','babi','bangsat','bedebah','bloon','bodoh','brengsek','copet','degil','dongo','goblok','jancuk','kontol','memek','monyet','pante','peler','sundal','tai','tolol','agama','kafir','aseng','cina','dayak','islam','kristen','tionghoa','pribumi','bego','cacat','gila','idiot','jelek','lonte','mati','miskin','pelacur','sinting','stress','colmek','desah','hot','mesum','ngentot','paha','sange','sex','telanjang','tetek','alat kotor','bacin','bangkai','bau','lendir','semut','bulu','cacing','kecoa','lalat','laler','masam','mual','muntah','ngeri','pait','basi','racun','rambut','rongsok','sapu','tikus','ulat','busuk','jijik','hutang','berulat','masem','alot','anyep','asin banget','hambar','gosong','mentah','keras','minyak semua','benyek','pelit','sikit','sedikit','zonk','jenes','hina','singgat','uler',
     'anj1ng','4njing','4nj1ng','4ndj1ng','60bl0k','g0bl0k','g0bl0q','k0nt0l','k0nt01','m3m3k','b4b1','b4bi','p3l3r','t4i','th4i','t_a_i','b3g0','id10t','scx','s3x','ng3nt0t','v4g1n4','p3l1t','h4mb4r','g0s0ng','m3nt4h','bas1','b4s1'
   ];
 
   function bersihkanTeks(teks) {
-    return teks.toLowerCase()
-      .replace(/[.\-_,?!@#$%\^&*()]/g, '') 
-      .replace(/\s+/g, ''); 
+    return teks.toLowerCase().replace(/[.\-_,?!@#$%\^&*()]/g, '').replace(/\s+/g, ''); 
   }
 
-  // ============================================
-  // MANAJEMEN SISTEM AUTHENTICATION GOOGLE
-  // ============================================
+  // MANAJEMEN AUTHENTICATION GOOGLE
   auth.onAuthStateChanged((user) => {
     if (user) {
       authBlock.style.display = 'none';
@@ -675,13 +714,23 @@ body {
       userPhoto.src = user.photoURL || 'https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg';
       userDisplayName.textContent = user.displayName;
       inputName.value = user.displayName; 
+      
+      if(user.email.toLowerCase() === EMAIL_ADMIN.toLowerCase()) {
+        customerFormArea.style.display = 'none';
+      } else {
+        customerFormArea.style.display = 'block';
+        adminReplyArea.style.display = 'none';
+      }
     } else {
       authBlock.style.display = 'block';
       formBlock.style.display = 'none';
+      customerFormArea.style.display = 'block';
+      adminReplyArea.style.display = 'none';
       inputName.value = '';
       userPhoto.src = '';
       userDisplayName.textContent = '';
     }
+    renderComments(dataKomentarGlobal);
   });
 
   btnGoogleLogin.addEventListener('click', () => {
@@ -697,50 +746,131 @@ body {
     });
   });
 
-  // ============================================
-  // LOAD & TAMPILKAN KOMENTAR + COUNTER OTOMATIS
-  // ============================================
+  // LOAD & RENDER DATA DARI SHEETS
   function loadCommentsFromSheets() {
-    const counterEl = document.getElementById('commentCounter');
-    
     fetch(SCRIPT_URL)
       .then(response => response.json())
       .then(data => {
-        listComment.innerHTML = '';
-        
-        // UPDATE JUMLAH COUNTER ULASAN SECARA REAL-TIME
-        if (data && data.length !== undefined) {
-          counterEl.innerHTML = `📊 Total Ulasan: <span style="color:#e65100; font-weight:800; font-size: 0.95rem;">${data.length}</span> Pelanggan`;
-        } else {
-          counterEl.innerHTML = `📊 Total Ulasan: <span style="color:#e65100; font-weight:800;">0</span> Pelanggan`;
-        }
-
-        if (data.length === 0) {
-          listComment.innerHTML = '<div class="loading-text">Belum ada ulasan. Jadilah yang pertama memberikan ulasan!</div>';
-          return;
-        }
-        data.forEach(c => {
-          const item = document.createElement('div');
-          item.className = 'comment-item';
-          item.innerHTML = `
-            <h4>✅ ${c.nama} <span style="font-size:0.7rem; color:#4caf50; font-weight:normal;">(Pelanggan Terverifikasi)</span></h4>
-            <p>${c.komentar}</p>
-            <div class="comment-time">${c.tanggal}</div>
-          `;
-          listComment.appendChild(item);
-        });
-        listComment.scrollTop = listComment.scrollHeight;
+        dataKomentarGlobal = data;
+        renderComments(data);
       })
       .catch(error => {
         console.error('Error:', error);
-        counterEl.innerHTML = `📊 Total Ulasan: Gagal memuat`;
+        document.getElementById('commentCounter').innerHTML = `📊 Total Ulasan: Gagal memuat`;
         listComment.innerHTML = '<div class="loading-text" style="color:red;">Gagal memuat ulasan. Silakan muat ulang halaman.</div>';
       });
   }
 
-  // ============================================
-  // VALIDASI FILTER & KIRIM DATA ULASAN
-  // ============================================
+  function renderComments(data) {
+    const counterEl = document.getElementById('commentCounter');
+    listComment.innerHTML = '';
+    
+    if (data && data.length !== undefined) {
+      counterEl.innerHTML = `📊 Total Ulasan: <span style="color:#e65100; font-weight:800; font-size: 0.95rem;">${data.length}</span> Pelanggan`;
+    } else {
+      counterEl.innerHTML = `📊 Total Ulasan: <span style="color:#e65100; font-weight:800;">0</span> Pelanggan`;
+      listComment.innerHTML = '<div class="loading-text">Belum ada ulasan. Jadilah yang pertama memberikan ulasan!</div>';
+      return;
+    }
+
+    if (data.length === 0) {
+      listComment.innerHTML = '<div class="loading-text">Belum ada ulasan. Jadilah yang pertama memberikan ulasan!</div>';
+      return;
+    }
+
+    const currentUser = auth.currentUser;
+    const isAdminLoggedIn = currentUser && (currentUser.email.toLowerCase() === EMAIL_ADMIN.toLowerCase());
+
+    data.forEach(c => {
+      const item = document.createElement('div');
+      item.className = 'comment-item';
+      
+      let htmlContent = `
+        <h4>✅ ${c.nama} <span style="font-size:0.7rem; color:#4caf50; font-weight:normal;">(Pelanggan Terverifikasi)</span></h4>
+        <p>${c.komentar}</p>
+      `;
+
+      if (c.balasan && c.balasan.trim() !== "") {
+        htmlContent += `
+          <div class="owner-reply-box">
+            <b>Owner 🧡:</b> ${c.balasan}
+          </div>
+        `;
+      }
+
+      htmlContent += `<div class="comment-time">${c.tanggal}</div>`;
+
+      if (isAdminLoggedIn) {
+        htmlContent += `<button class="btn-admin-reply" onclick="bukaFormBalasan('${c.row_id}', '${c.nama}')">💬 Balas / Ubah Balasan</button>`;
+      }
+
+      item.innerHTML = htmlContent;
+      listComment.appendChild(item);
+    });
+    listComment.scrollTop = listComment.scrollHeight;
+  }
+
+  window.bukaFormBalasan = function(rowId, namaPelanggan) {
+    activeReplyRowId = rowId;
+    replyTargetName.textContent = namaPelanggan;
+    adminReplyText.value = "";
+    
+    const dataLama = dataKomentarGlobal.find(x => String(x.row_id) === String(rowId));
+    if(dataLama && dataLama.balasan) {
+      adminReplyText.value = dataLama.balasan;
+    }
+
+    adminReplyArea.style.display = 'block';
+    adminReplyText.focus();
+    document.querySelector('.comment-box').scrollIntoView({ behavior: 'smooth' });
+  };
+
+  btnCancelAdminReply.addEventListener('click', () => {
+    adminReplyArea.style.display = 'none';
+    activeReplyRowId = null;
+  });
+
+  btnSubmitAdminReply.addEventListener('click', function() {
+    const textBalasan = adminReplyText.value.trim();
+    if(textBalasan === "") {
+      alert("Tuliskan isi kalimat balasan terlebih dahulu.");
+      return;
+    }
+
+    btnSubmitAdminReply.disabled = true;
+    btnSubmitAdminReply.textContent = "Mengirim...";
+
+    const formData = new URLSearchParams();
+    formData.append('action', 'reply');
+    formData.append('row_id', activeReplyRowId);
+    formData.append('balasan', textBalasan);
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(res => {
+      btnSubmitAdminReply.disabled = false;
+      btnSubmitAdminReply.textContent = "Kirim Balasan";
+      if(res.status === 'success') {
+        adminReplyArea.style.display = 'none';
+        activeReplyRowId = null;
+        alert("Balasan pemilik berhasil disimpan!");
+        loadCommentsFromSheets();
+      } else {
+        alert("Gagal menyimpan balasan: " + res.message);
+      }
+    })
+    .catch(error => {
+      btnSubmitAdminReply.disabled = false;
+      btnSubmitAdminReply.textContent = "Kirim Balasan";
+      console.error('Error:', error);
+      alert("Terjadi kesalahan jaringan.");
+    });
+  });
+
+  // KONTROL KIRIM ULASAN PELANGGAN
   btnSubmit.addEventListener('click', function() {
     const user = auth.currentUser;
     if (!user) {
@@ -803,7 +933,7 @@ body {
         alert('Terima kasih! Ulasan resmi Anda berhasil terbit secara publik.');
         loadCommentsFromSheets();
       } else {
-        alert('Gagal mengirim ulasan: ' + res.message);
+        alert('Gagal mengirim ulasan.');
       }
     })
     .catch(error => {
