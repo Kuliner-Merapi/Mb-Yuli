@@ -98,70 +98,6 @@ body {
 .card-body h3 { font-size: .8rem; margin-bottom: 4px; line-height: 1.3; }
 .price { font-size: .95rem; font-weight: 800; color: #d32f2f; }
 
-/* ===== SPESIAL HARI INI ===== */
-.spesial-wrap {
-  margin: 10px auto;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(180,60,0,.2);
-}
-.spesial-header-bar {
-  background: linear-gradient(90deg, #bf360c, #ff9800, #bf360c);
-  padding: 8px 10px;
-  text-align: center;
-}
-.spesial-header-bar .spesial-title {
-  font-size: .82rem;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: 1px;
-}
-.spesial-header-bar .spesial-date {
-  font-size: .72rem;
-  color: #ffe0b2;
-  margin-top: 2px;
-}
-.spesial-inner {
-  background: linear-gradient(135deg, #fff8f0, #fff0d6);
-  border: 2px solid #ff9800;
-  border-top: none;
-  border-radius: 0 0 16px 16px;
-  padding: 14px;
-}
-.spesial-inner .sub-note {
-  text-align: center;
-  font-size: .78rem;
-  color: #e65100;
-  margin-bottom: 12px;
-  font-weight: 600;
-}
-.spesial-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
-.spesial-card {
-  background: white;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(180,60,0,.15);
-  border: 2px solid #ffcc80;
-  display: flex;
-  flex-direction: column;
-}
-.spesial-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; cursor: pointer; transition: transform 0.2s ease; }
-.spesial-card img:hover { transform: scale(1.04); }
-.spesial-card-body { padding: 8px; text-align: center; }
-.spesial-card-body h3 { font-size: .82rem; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
-.spesial-price { font-size: 1.05rem; font-weight: 800; color: #d32f2f; }
-.spesial-note { font-size: .7rem; color: #795548; margin-top: 2px; }
-.stok-badge {
-  background: #e53935;
-  color: #fff;
-  font-size: .67rem;
-  font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 20px;
-  display: inline-block;
-  margin-top: 5px;
-}
-
 /* ===== ACCORDION STYLE ===== */
 .dropdown-trigger-btn {
   background: #fff;
@@ -369,31 +305,6 @@ body {
         <p style="margin-top:10px;font-size:.82rem;color:#5a3e2b;">💰 Pembayaran bisa Tunai,<br>💳 bisa Transfer ke DANA &amp; BRI</p>
       </div>
 
-      <div class="spesial-wrap" id="menuSpesial">
-        <div class="spesial-header-bar">
-          <div class="spesial-title">⭐ MENU SPESIAL HARI INI ⭐</div>
-          <div class="spesial-date" id="tanggalSpesial"></div>
-        </div>
-        <div class="spesial-inner">
-          <div class="sub-note">⚡ Stok terbatas — habis ya sudah!</div>
-          <div style="display:flex;justify-content:center;">
-            <div class="spesial-card" style="max-width:180px;width:100%;">
-              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-ayam-penyet.webp" alt="Nasi Ayam Penyet" class="can-zoom">
-              <div class="spesial-card-body">
-                <h3>Nasi Ayam Penyet</h3>
-                <div class="spesial-price">20K</div>
-                <div class="spesial-note">+ lalapan &amp; sambal</div>
-                <span class="stok-badge">Stok Terbatas!</span>
-              </div>
-            </div>
-          </div>
-          <a class="cta" style="display:block;text-align:center;margin-top:14px;"
-             href="https://wa.me/6282377160602?text=Halo%20Mbak%20Yulli,%20saya%20mau%20pesan%20Menu%20Spesial%20Hari%20Ini.">
-            💬 Pesan Menu Spesial
-          </a>
-        </div>
-      </div>
-
       <div class="glass">
         <div class="feature">
           <div>
@@ -404,24 +315,6 @@ body {
           </div>
           <div>
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/mie-tektek-rebus.webp" alt="Mie Tek-Tek Rebus" class="can-zoom">
-          </div>
-        </div>
-      </div>
-
-      <div class="glass">
-        <h2 class="section-title">🍱 Menu Makan Lezat</h2>
-        <div class="grid">
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-ayam-bakar.webp" alt="Nasi Ayam Bakar" class="can-zoom">
-            <div class="card-body"><h3>Nasi Ayam Bakar</h3><div class="price">20K</div></div>
-          </div>
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-ayam-goreng.webp" alt="Nasi Ayam Goreng" class="can-zoom">
-            <div class="card-body"><h3>Nasi Ayam Goreng</h3><div class="price">20K</div></div>
-          </div>
-          <div class="card">
-            <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-pecel-lele.webp" alt="Nasi Pecel Lele" class="can-zoom">
-            <div class="card-body"><h3>Nasi Pecel Lele</h3><div class="price">20K</div></div>
           </div>
         </div>
       </div>
@@ -453,11 +346,35 @@ body {
       </div>
 
       <div class="glass">
+        <div class="dropdown-trigger-btn" id="makananBtn">🍱 Lapar tapi mager keluar? Yuk cek Daftar Menu Makanan lezat kami, klik di sini...</div>
+        <div class="dropdown-content" id="makananContent">
+          <div class="grid" style="margin-top:10px;">
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-ayam-penyet.webp" alt="Nasi Ayam Penyet" class="can-zoom">
+              <div class="card-body"><h3>Nasi Ayam Penyet</h3><div class="price">20K</div></div>
+            </div>
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-ayam-bakar.webp" alt="Nasi Ayam Bakar" class="can-zoom">
+              <div class="card-body"><h3>Nasi Ayam Bakar</h3><div class="price">22K</div></div>
+            </div>
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-ayam-goreng.webp" alt="Nasi Ayam Goreng" class="can-zoom">
+              <div class="card-body"><h3>Nasi Ayam Goreng</h3><div class="price">22K</div></div>
+            </div>
+            <div class="card">
+              <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/nasi-kotak-pecel-lele.webp" alt="Nasi Pecel Lele" class="can-zoom">
+              <div class="card-body"><h3>Nasi Pecel Lele</h3><div class="price">17K</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass">
         <h2 class="section-title">🥤 Minuman Segar</h2>
         <div class="grid">
           <div class="card">
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-mojito-jumbo.webp" alt="Es Mojito" class="can-zoom">
-            <div class="card-body"><h3>Es Mojito Varian Rasa</h3><div class="price">7K</div></div>
+            <div class="card-body"><h3>Es Mojito Varian Rasa</h3><div class="price">6K</div></div>
           </div>
           <div class="card">
             <img src="https://raw.githubusercontent.com/Kuliner-Merapi/Mb-Yuli/main/images/es-jeruk.webp" alt="Es Jeruk" class="can-zoom">
@@ -527,12 +444,10 @@ body {
         </div>
       </div>
 
-      <!-- TEMPAT SISTEM KOMENTAR & COUNTER YANG SUDAH DIURUTKAN -->
       <div class="glass comment-box">
         <h2 class="section-title" style="margin-bottom: 4px;">💬 Ulasan &amp; Saran Pelanggan</h2>
         <p style="text-align:center; font-size:0.75rem; color:#e65100; margin-bottom:12px;">Wajib Login Google. Data nomor HP &amp; Email dijamin aman &amp; tidak publik.</p>
         
-        <!-- ELEMENT PEMBATAS LOGIN -->
         <div id="authBlock" class="auth-container">
           <button class="btn-google" id="btnGoogleLogin" style="margin-bottom: 12px;">
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo">
@@ -540,10 +455,8 @@ body {
           </button>
         </div>
 
-        <!-- Elemen Counter Jumlah Ulasan -->
         <div id="commentCounter" style="text-align:center; font-size:0.85rem; font-weight:600; color:#8d2f00; margin-bottom:15px; background: #fff; padding: 6px; border-radius: 8px; border: 1px dashed #ffcc80;">📊 Total Ulasan: Memuat...</div>
 
-        <!-- FORM ULASAN / ACTION ADMIN -->
         <div id="formBlock" style="display: none;">
           <div class="user-profile-info">
             <img src="" id="userPhoto" class="user-avatar" alt="Avatar">
@@ -553,7 +466,6 @@ body {
             </div>
           </div>
 
-          <!-- FORM REGULER UNTUK PELANGGAN BIASA -->
           <div id="customerFormArea">
             <input type="text" id="commentName" placeholder="Nama Lengkap Anda..." disabled required>
             <input type="tel" id="commentPhone" placeholder="Nomor HP / WhatsApp Aktif..." required>
@@ -561,7 +473,6 @@ body {
             <button class="comment-submit" id="submitComment">Kirim Ulasan Resmi</button>
           </div>
 
-          <!-- FORM RAHASIA KHUSUS ADMIN JIKA MAU MEMBALAS -->
           <div id="adminReplyArea" style="display:none; background:#fff3e0; padding:10px; border-radius:8px; border:1px solid #ff9800; margin-bottom:10px;">
             <p style="font-size:0.78rem; font-weight:700; color:#e65100; margin-bottom:4px;">✍️ Membalas Ulasan: <span id="replyTargetName" style="color:#333;">-</span></p>
             <textarea id="adminReplyText" placeholder="Tulis balasan pemilik di sini..." required></textarea>
@@ -572,7 +483,6 @@ body {
           </div>
         </div>
         
-        <!-- KOLOM TEMPAT MENAMPILKAN DAFTAR KOMENTAR -->
         <div class="comment-list" id="commentList">
           <div class="loading-text" id="loadingText">Memuat komentar pelanggan...</div>
         </div>
@@ -605,12 +515,10 @@ body {
 
 <a class="wa" href="https://wa.me/6282377160602">💬 WA Pesan</a>
 
-<!-- LOAD FIREBASE UTILS BERBASIS BROWSER COMPATIBLE -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
 <script>
-  // Konfigurasi Projek Firebase Kuliner-Mbak-Yulli
   const firebaseConfig = {
     apiKey: "AIzaSyCCd3_gC1miypn6KJAutVVZSPrLMy582WQ",
     authDomain: "kuliner-mbak-yulli.firebaseapp.com",
@@ -621,29 +529,15 @@ body {
     measurementId: "G-B18CE019W2"
   };
 
-  // Inisialisasi Firebase
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
   const provider = new firebase.auth.GoogleAuthProvider();
 
-  // URL Web Apps Google Sheets
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5qLDj_0Cp-fN8E01KdcHx4wrN8cH_wlXnMRuPYVGbNs8utGlWvwZzElyNH9u_AeoO/exec";
-
-  // EMAIL RESMI ADMIN MBAK YULI
   const EMAIL_ADMIN = "yulimakmur2009@gmail.com"; 
 
   let dataKomentarGlobal = []; 
   let activeReplyRowId = null;  
-
-  const HARI  = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-  const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-  
-  function tampilkanTanggal() {
-    const now  = new Date();
-    const teks = HARI[now.getDay()] + ', ' + now.getDate() + ' ' + BULAN[now.getMonth()] + ' ' + now.getFullYear();
-    document.getElementById('tanggalSpesial').textContent = teks;
-  }
-  tampilkanTanggal();
 
   function applyPadding() {
     const sa = document.getElementById('scrollArea');
@@ -674,11 +568,12 @@ body {
       btn.textContent = content.classList.contains('open') ? openTxt : closeTxt;
     });
   }
+  // Setup ketiga dropdown akordeon
+  setupDropdown('makananBtn', 'makananContent', '🔼 Tutup Daftar Menu Makanan', '🍱 Lapar tapi mager keluar? Yuk cek Daftar Menu Makanan lezat kami, klik di sini...');
   setupDropdown('kueBtn', 'kueContent', '🔼 Tutup Daftar Kue', '🍰 Ingin pesan kue? Kita menyediakan aneka kue yang ada, klik disini...');
   setupDropdown('cemilanBtn', 'cemilanContent', '🔼 Tutup Cemilan Favorit', '🍢 Cari cemilan santai? Kita ada Cemilan Favorit, klik disini...');
 
   const btnSubmit = document.getElementById('submitComment');
-  const inputName = document.getElementById('commentName');
   const inputPhone = document.getElementById('commentPhone');
   const inputText = document.getElementById('commentText');
   const listComment = document.getElementById('commentList');
@@ -689,6 +584,7 @@ body {
   const btnGoogleLogout = document.getElementById('btnGoogleLogout');
   const userPhoto = document.getElementById('userPhoto');
   const userDisplayName = document.getElementById('userDisplayName');
+  const inputName = document.getElementById('commentName');
 
   const customerFormArea = document.getElementById('customerFormArea');
   const adminReplyArea = document.getElementById('adminReplyArea');
@@ -706,7 +602,6 @@ body {
     return teks.toLowerCase().replace(/[.\-_,?!@#$%\^&*()]/g, '').replace(/\s+/g, ''); 
   }
 
-  // MANAJEMEN AUTHENTICATION GOOGLE
   auth.onAuthStateChanged((user) => {
     if (user) {
       authBlock.style.display = 'none';
@@ -746,7 +641,6 @@ body {
     });
   });
 
-  // LOAD & RENDER DATA DARI SHEETS
   function loadCommentsFromSheets() {
     fetch(SCRIPT_URL)
       .then(response => response.json())
@@ -870,7 +764,6 @@ body {
     });
   });
 
-  // KONTROL KIRIM ULASAN PELANGGAN
   btnSubmit.addEventListener('click', function() {
     const user = auth.currentUser;
     if (!user) {
@@ -905,6 +798,7 @@ body {
       return;
     }
 
+    const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
     const now = new Date();
     const timeString = now.getDate() + ' ' + BULAN[now.getMonth()] + ' ' + now.getFullYear();
 
